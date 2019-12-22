@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="project_building_type" model="ir.actions.act_window">
+        <field name="name">Project Type</field>
+        <field name="res_model">project.type.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smilling_face">
+                Create .... 
+            </p>
+        </field>
+    </record>
+
+    <record id="action_building_type" model="ir.actions.act_window">
+        <field name="name">Building Type</field>
+        <field name="res_model">building.type.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smilling_face">
+                Create .... 
+            </p>
+        </field>
+    </record>
+
+    <record id="action_currency_type" model="ir.actions.act_window">
+        <field name="name">Currency</field>
+        <field name="res_model">currency.type.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smilling_face">
+                Create .... 
+            </p>
+        </field>
+    </record>
+
+    <record id="action_project" model="ir.actions.act_window">
+        <field name="name">Project</field>
+        <field name="res_model">project.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create .... 
+            </p>
+        </field>
+    </record>
+    
+    <menuitem id="toratto_root" name="Toratto" sequence="0" />
+    <menuitem id="menu_menu" name="Project" parent="toratto_root" action="action_project"/>
+    <menuitem id="currency_type_menu" name="Currency" parent="toratto_root" action="action_currency_type"/>
+    <menuitem id="building_type_menu" name="Building Type" parent="toratto_root" action="action_building_type"/>
+    <menuitem id="project_type_menu" name="Project Type" parent="toratto_root" action="project_building_type"/>
+</odoo>
