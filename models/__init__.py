@@ -5,4 +5,5 @@
 from . import project_type
 from . import building_type
 from . import currency_type
+from . import funders
 from . import project

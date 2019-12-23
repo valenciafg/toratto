@@ -14,3 +14,8 @@ class Project(models.Model):
         ondelete='set null', string="Building Type", index=True)
     project_type_id = fields.Many2one('project.type.toratto',
         ondelete='set null', string="Project Type", index=True)
+    project_type_id = fields.Many2one('project.type.toratto',
+        ondelete='set null', string="Project Type", index=True)
+    funders_id = fields.Many2many('funders.toratto', string="Funders")
+    description = fields.Text(string="Description")
+    #construction_dt_start = fields.Date.today()
