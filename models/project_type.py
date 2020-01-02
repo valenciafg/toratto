@@ -5,4 +5,4 @@ from odoo import models, fields, api
 class ProjectType(models.Model):
     _name = 'project.type.toratto'
     
-    name = fields.Char(required=True, size=50)
+    name = fields.Char(string="Nombre", required=True, size=50)

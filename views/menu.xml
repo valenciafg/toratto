@@ -1,64 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
+    <record id="action_contact" model="ir.actions.act_window">
+        <field name="name">Contacto</field>
+        <field name="res_model">contact.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Registrar nuevo contacto 
+            </p>
+        </field>
+    </record>
+    <record id="action_construction_state" model="ir.actions.act_window">
+        <field name="name">Estado de construccion</field>
+        <field name="res_model">construction_state.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Registrar nuevo estado de construccion 
+            </p>
+        </field>
+    </record>
+    <record id="action_owner" model="ir.actions.act_window">
+        <field name="name">Propietarios</field>
+        <field name="res_model">owner.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Registrar nuevo propietario 
+            </p>
+        </field>
+    </record>
     <record id="action_funder" model="ir.actions.act_window">
-        <field name="name">Funders</field>
+        <field name="name">Financistas</field>
         <field name="res_model">funders.toratto</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smilling_face">
-                Create .... 
+                Registrar nuevo financista
             </p>
         </field>
     </record>
-    <record id="action_building_type" model="ir.actions.act_window">
-        <field name="name">Project Type</field>
+    <record id="action_project_type" model="ir.actions.act_window">
+        <field name="name">Tipos de de proyecto</field>
         <field name="res_model">project.type.toratto</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smilling_face">
-                Create .... 
+                Crear nuevo tipo de proyecto
             </p>
         </field>
     </record>
 
     <record id="action_building_type" model="ir.actions.act_window">
-        <field name="name">Building Type</field>
+        <field name="name">Tipo de Edificación</field>
         <field name="res_model">building.type.toratto</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smilling_face">
-                Create .... 
+                Registrar nuevo tipo de edificacion
             </p>
         </field>
     </record>
 
     <record id="action_currency_type" model="ir.actions.act_window">
-        <field name="name">Currency</field>
+        <field name="name">Monedas</field>
         <field name="res_model">currency.type.toratto</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smilling_face">
-                Create .... 
+                Registrar nueva moneda
             </p>
+        </field>
+    </record>
+    <!-- PROJECT VIEW -->
+    <record model="ir.ui.view" id="session_form_view">
+        <field name="name">project_toratto.form</field>
+        <field name="model">project.toratto</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Generales" colspan="4">
+                        <group colspan="4" col="4">
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="currency_id"/>
+                            <field name="building_type_id"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="sale_start_date"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="funders_id"/>
+                        </group>
+                        <group colspan="4" col="4">
+                            <field name="amount_of_letter_separation"/>
+                            <field name="project_type_id"/>
+                            <field name="owner_id"/>
+                            <field name="total_cost"/>
+                            <field name="amount_of_separacion"/>
+                            <field name="type_of_bank_account"/>
+                            <field name="number_of_floors"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="description"/>
+                        </group>
+                    </group>
+                    <group string="Construcción" colspan="4">
+                        <group colspan="4" col="4">
+                            <field name="contact_id"/>
+                            <field name="work_progress"/>
+                            <field name="real_project_delivery_date"/>
+                            <field name="estimate_project_delivery_date"/>
+                            <field name="construction_state_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
         </field>
     </record>
 
     <record id="action_project" model="ir.actions.act_window">
-        <field name="name">Project</field>
+        <field name="name">Proyectos</field>
         <field name="res_model">project.toratto</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Create .... 
+                Crear nuevo proyecto
             </p>
         </field>
     </record>
-    
+    <!-- TOP LEVEL MENU -->
     <menuitem id="toratto_root" name="Toratto" sequence="0" />
-    <menuitem id="menu_menu" name="Project" parent="toratto_root" action="action_project"/>
-    <menuitem id="currency_type_menu" name="Currency" parent="toratto_root" action="action_currency_type"/>
-    <menuitem id="building_type_menu" name="Building Type" parent="toratto_root" action="action_building_type"/>
-    <menuitem id="project_type_menu" name="Project Type" parent="toratto_root" action="action_building_type"/>
-    <menuitem id="funder_menu" name="Funder" parent="toratto_root" action="action_funder"/>
+    <!-- MAIN MENU -->
+    <menuitem id="project_main_menu" name="Proyectos" parent="toratto_root"/>
+    <!-- SINGLE MENU ITEMS -->
+    <menuitem id="project_menu" name="Proyectos" parent="project_main_menu" action="action_project" sequence="0"/>
+    <menuitem id="currency_type_menu" name="Tipos de Moneda" parent="project_main_menu" action="action_currency_type" sequence="1"/>
+    <menuitem id="project_type_menu" name="Tipos Proyectos" parent="project_main_menu" action="action_project_type" sequence="2"/>
+    <menuitem id="building_type_menu" name="Tipo de Edificación" parent="project_main_menu" action="action_building_type" sequence="3"/>
+    <menuitem id="funder_menu" name="Financistas" parent="project_main_menu" action="action_funder" sequence="4"/>
+    <menuitem id="owner_menu" name="Propietarios" parent="project_main_menu" action="action_owner" sequence="5"/>
+    <menuitem id="owner_menu" name="Contactos" parent="project_main_menu" action="action_contact" sequence="6"/>
+    <menuitem id="owner_menu" name="Estados de Construccion" parent="project_main_menu" action="action_construction_state" sequence="7"/>
 </odoo>
