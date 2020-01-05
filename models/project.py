@@ -6,9 +6,43 @@ class Project(models.Model):
     _name = 'project.toratto'
     _description = 'Proyectos de construccion'
 
+    @api.onchange('country_id')
+    def _onchange_country_id(self):
+        for rec in self:
+            return {
+                'domain': {
+                    'department_id': [('country_id', '=', rec.country_id.id)]
+                }
+            }
+
+    @api.onchange('department_id')
+    def _onchange_department_id(self):
+        for rec in self:
+            return {
+                'domain': {
+                    'province_id': [
+                        ('country_id', '=', rec.country_id.id),
+                        ('department_id', '=', rec.department_id.id)
+                    ]
+                }
+            }
+
+    @api.onchange('province_id')
+    def _onchange_province_id(self):
+        for rec in self:
+            return {
+                'domain': {
+                    'district_id': [
+                        ('country_id', '=', rec.country_id.id),
+                        ('department_id', '=', rec.department_id.id),
+                        ('province_id', '=', rec.province_id.id)
+                    ]
+                }
+            }
+
     code = fields.Char(string="Código", required=True, size=15)
     name = fields.Char(string="Nombre", required=True, size=50)
-    currency_id = fields.Many2one('currency.type.toratto',
+    currency_id = fields.Many2one('res.currency',
         ondelete='set null', string="Moneda", index=True)
     building_type_id = fields.Many2one('building.type.toratto',
         ondelete='set null', string="Tipo de Edificación", index=True)
@@ -42,4 +76,14 @@ class Project(models.Model):
     )
     construction_state_id = fields.Many2one('construction_state.toratto',
         ondelete='set null', string="Estado de construccion", index=True)
+    #LOCATION
+    country_id = fields.Many2one('res.country',
+        ondelete='set null', string="País", index=True)
+    department_id = fields.Many2one('res.country.state',
+        ondelete='set null', string="Departamento", index=True)
+    province_id = fields.Many2one('province.toratto',
+        ondelete='set null', string="Provincia", index=True)
+    district_id = fields.Many2one('district.toratto',
+        ondelete='set null', string="Distrito", index=True)
+    address = fields.Text(string="Dirección")
     

@@ -62,7 +62,7 @@
             </p>
         </field>
     </record>
-
+    <!--
     <record id="action_currency_type" model="ir.actions.act_window">
         <field name="name">Monedas</field>
         <field name="res_model">currency.type.toratto</field>
@@ -73,6 +73,7 @@
             </p>
         </field>
     </record>
+    -->
     <!-- PROJECT VIEW -->
     <record model="ir.ui.view" id="session_form_view">
         <field name="name">project_toratto.form</field>
@@ -115,6 +116,17 @@
                             <field name="construction_state_id"/>
                         </group>
                     </group>
+                    <group string="Ubicación" colspan="4">
+                        <group colspan="4" col="4">
+                            <field name="country_id"/>
+                            <field name="department_id"/>
+                            <field name="province_id"/>
+                            <field name="district_id"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="address"/>
+                        </group>
+                    </group>
                 </sheet>
             </form>
         </field>
@@ -136,7 +148,9 @@
     <menuitem id="project_main_menu" name="Proyectos" parent="toratto_root"/>
     <!-- SINGLE MENU ITEMS -->
     <menuitem id="project_menu" name="Proyectos" parent="project_main_menu" action="action_project" sequence="0"/>
+    <!--
     <menuitem id="currency_type_menu" name="Tipos de Moneda" parent="project_main_menu" action="action_currency_type" sequence="1"/>
+    -->
     <menuitem id="project_type_menu" name="Tipos Proyectos" parent="project_main_menu" action="action_project_type" sequence="2"/>
     <menuitem id="building_type_menu" name="Tipo de Edificación" parent="project_main_menu" action="action_building_type" sequence="3"/>
     <menuitem id="funder_menu" name="Financistas" parent="project_main_menu" action="action_funder" sequence="4"/>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+
+    <record id="action_province" model="ir.actions.act_window">
+        <field name="name">Provincia</field>
+        <field name="res_model">province.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smilling_face">
+                Registrar nueva provincia
+            </p>
+        </field>
+    </record>
+
+    <record id="action_district" model="ir.actions.act_window">
+        <field name="name">Distrito</field>
+        <field name="res_model">district.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smilling_face">
+                Registrar nuevo distrito
+            </p>
+        </field>
+    </record>
+    <!-- MAIN MENU -->
+    <menuitem id="settings_main_menu" name="Ajustes" parent="toratto_root"/>
+    <!-- SINGLE MENU ITEMS -->
+    <menuitem id="province_menu" name="Provincias" parent="settings_main_menu" action="action_province" sequence="0"/>
+    <menuitem id="district_menu" name="Distritos" parent="settings_main_menu" action="action_district" sequence="1"/>
+</odoo>
