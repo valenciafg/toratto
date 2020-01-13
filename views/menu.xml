@@ -134,8 +134,7 @@
                 <field name="address" />
             </tree>
         </field>
-    </record>
-    
+    </record>    
     
     <record id="project_kanban_view" model="ir.ui.view">
         <field name="name">project.toratto.kanban</field>
@@ -181,19 +180,43 @@
             </p>
         </field>
     </record>
+    <!-- UNIT VIEW -->
+    <record id="unit_tree_view" model="ir.ui.view">
+        <field name="name">unit.toratto.tree</field>
+        <field name="model">unit.toratto</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code" />
+                <field name="name" />
+                <field name="unit_type" />
+                <field name="sub_division" />
+                <field name="proyect_id" />
+                <field name="st_commercial" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_unit" model="ir.actions.act_window">
+        <field name="name">Unidades</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">unit.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear nueva unidad
+            </p>
+        </field>
+    </record>
     <!-- TOP LEVEL MENU -->
     <menuitem id="toratto_root" name="Toratto" sequence="0" />
     <!-- MAIN MENU -->
     <menuitem id="project_main_menu" name="Proyectos" parent="toratto_root"/>
     <!-- SINGLE MENU ITEMS -->
     <menuitem id="project_menu" name="Proyectos" parent="project_main_menu" action="action_project" sequence="0"/>
-    <!--
-    <menuitem id="currency_type_menu" name="Tipos de Moneda" parent="project_main_menu" action="action_currency_type" sequence="1"/>
-    -->
+    <menuitem id="unit_menu" name="Unidades" parent="project_main_menu" action="action_unit" sequence="1"/>
     <menuitem id="project_type_menu" name="Tipos Proyectos" parent="project_main_menu" action="action_project_type" sequence="2"/>
     <menuitem id="building_type_menu" name="Tipo de Edificación" parent="project_main_menu" action="action_building_type" sequence="3"/>
     <menuitem id="funder_menu" name="Financistas" parent="project_main_menu" action="action_funder" sequence="4"/>
     <menuitem id="owner_menu" name="Propietarios" parent="project_main_menu" action="action_owner" sequence="5"/>
-    <menuitem id="owner_menu" name="Contactos" parent="project_main_menu" action="action_contact" sequence="6"/>
-    <menuitem id="owner_menu" name="Estados de Construccion" parent="project_main_menu" action="action_construction_state" sequence="7"/>
+    <menuitem id="contact_menu" name="Contactos" parent="project_main_menu" action="action_contact" sequence="6"/>
+    <menuitem id="construction_state_menu" name="Estados de Construccion" parent="project_main_menu" action="action_construction_state" sequence="7"/>
 </odoo>
