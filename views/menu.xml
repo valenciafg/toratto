@@ -62,150 +62,8 @@
             </p>
         </field>
     </record>
-    <!-- PROJECT VIEW -->
-    <record id="project_form_view" model="ir.ui.view">
-        <field name="name">project_toratto.form</field>
-        <field name="model">project.toratto</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group string="Generales" colspan="4">
-                        <group colspan="4" col="4">
-                            <field name="name"/>
-                            <field name="logo"/>
-                            <field name="code"/>
-                            <field name="currency_id"/>
-                            <field name="building_type_id"/>
-                        </group>
-                        <group colspan="2" col="2">
-                            <field name="sale_start_date"/>
-                        </group>
-                        <group colspan="2" col="2">
-                            <field name="funders_id"/>
-                        </group>
-                        <group colspan="4" col="4">
-                            <field name="amount_of_letter_separation"/>
-                            <field name="project_type_id"/>
-                            <field name="owner_id"/>
-                            <field name="total_cost"/>
-                            <field name="amount_of_separacion"/>
-                            <field name="type_of_bank_account"/>
-                            <field name="number_of_floors"/>
-                        </group>
-                        <group colspan="2" col="2">
-                            <field name="description"/>
-                        </group>
-                    </group>
-                    <group string="Construcción" colspan="4">
-                        <group colspan="4" col="4">
-                            <field name="contact_id"/>
-                            <field name="work_progress"/>
-                            <field name="real_project_delivery_date"/>
-                            <field name="estimate_project_delivery_date"/>
-                            <field name="construction_state_id"/>
-                        </group>
-                    </group>
-                    <group string="Ubicación" colspan="4">
-                        <group colspan="4" col="4">
-                            <field name="country_id"/>
-                            <field name="department_id"/>
-                            <field name="province_id"/>
-                            <field name="district_id"/>
-                        </group>
-                        <group colspan="2" col="2">
-                            <field name="address"/>
-                        </group>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="project_tree_view" model="ir.ui.view">
-        <field name="name">project.toratto.tree</field>
-        <field name="model">project.toratto</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="code" />
-                <field name="name" />
-                <field name="building_type_id" />
-                <field name="province_id" />
-                <field name="district_id" />
-                <field name="address" />
-            </tree>
-        </field>
-    </record>    
     
-    <record id="project_kanban_view" model="ir.ui.view">
-        <field name="name">project.toratto.kanban</field>
-        <field name="model">project.toratto</field>
-        <field name="arch" type="xml">
-            <kanban>
-                <field name="id"/>
-                <field name="code"/>
-                <field name="name"/>
-                <templates>
-                    <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_global_click o_kanban_record_has_image_fill">
-                            <div class="o_kanban_image">
-                                <img alt="Avatar" t-att-src="kanban_image('project.toratto', 'logo',record.id.raw_value)"/>
-                            </div>
-                            <div class="oe_kanban_details">
-                                <strong><field name="name"/></strong>
-                                <div class="o_kanban_tags_section">
-                                    <ul>
-                                        <li><field name="code"/></li>
-                                        <li><field name="building_type_id"/></li>
-                                        <li><field name="province_id"/></li>
-                                        <li><field name="district_id"/></li>
-                                        <li><field name="address"/></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
     
-    <record id="action_project" model="ir.actions.act_window">
-        <field name="name">Proyectos</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">project.toratto</field>
-        <field name="view_mode">kanban,tree,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Crear nuevo proyecto
-            </p>
-        </field>
-    </record>
-    <!-- UNIT VIEW -->
-    <record id="unit_tree_view" model="ir.ui.view">
-        <field name="name">unit.toratto.tree</field>
-        <field name="model">unit.toratto</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="code" />
-                <field name="name" />
-                <field name="unit_type" />
-                <field name="sub_division" />
-                <field name="proyect_id" />
-                <field name="st_commercial" />
-            </tree>
-        </field>
-    </record>
-    <record id="action_unit" model="ir.actions.act_window">
-        <field name="name">Unidades</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">unit.toratto</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Crear nueva unidad
-            </p>
-        </field>
-    </record>
     <!-- TOP LEVEL MENU -->
     <menuitem id="toratto_root" name="Toratto" sequence="0" />
     <!-- MAIN MENU -->
@@ -214,9 +72,10 @@
     <menuitem id="project_menu" name="Proyectos" parent="project_main_menu" action="action_project" sequence="0"/>
     <menuitem id="unit_menu" name="Unidades" parent="project_main_menu" action="action_unit" sequence="1"/>
     <menuitem id="project_type_menu" name="Tipos Proyectos" parent="project_main_menu" action="action_project_type" sequence="2"/>
-    <menuitem id="building_type_menu" name="Tipo de Edificación" parent="project_main_menu" action="action_building_type" sequence="3"/>
-    <menuitem id="funder_menu" name="Financistas" parent="project_main_menu" action="action_funder" sequence="4"/>
-    <menuitem id="owner_menu" name="Propietarios" parent="project_main_menu" action="action_owner" sequence="5"/>
-    <menuitem id="contact_menu" name="Contactos" parent="project_main_menu" action="action_contact" sequence="6"/>
-    <menuitem id="construction_state_menu" name="Estados de Construccion" parent="project_main_menu" action="action_construction_state" sequence="7"/>
+    <menuitem id="unit_type_menu" name="Tipos de Unidad" parent="project_main_menu" action="action_unit_type" sequence="2"/>
+    <menuitem id="building_type_menu" name="Tipo de Edificación" parent="project_main_menu" action="action_building_type" sequence="4"/>
+    <menuitem id="funder_menu" name="Financistas" parent="project_main_menu" action="action_funder" sequence="5"/>
+    <menuitem id="owner_menu" name="Propietarios" parent="project_main_menu" action="action_owner" sequence="6"/>
+    <menuitem id="contact_menu" name="Contactos" parent="project_main_menu" action="action_contact" sequence="7"/>
+    <menuitem id="construction_state_menu" name="Estados de Construccion" parent="project_main_menu" action="action_construction_state" sequence="8"/>
 </odoo>

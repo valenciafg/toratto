@@ -10,6 +10,7 @@ from . import contact
 from . import construction_state
 from . import project
 from . import unit
+from . import unit_type
 #
 from . import res_country
 #Settings

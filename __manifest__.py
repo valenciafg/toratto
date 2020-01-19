@@ -24,11 +24,12 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
+        'views/project_view.xml',
+        'views/unit_view.xml',
+        'views/unit_type_view.xml',
         'views/menu.xml',
         'views/settings.xml',
         'views/res_country_view.xml',
-        #'views/res_partner_view.xml',
-        #'views/res_country_data.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

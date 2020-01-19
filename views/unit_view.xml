@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!-- PROJECT FROM VIEW -->
+    <record id="unit_form_view" model="ir.ui.view">
+        <field name="name">unit.toratto.form</field>
+        <field name="model">unit.toratto</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Generales" colspan="4">
+                        <group colspan="4" col="4">
+                            <field name="proyect_id"/>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="floor_number"/>
+                            <field name="unit_type"/>
+                            <field name="sub_division"/>
+                        </group>
+                    </group>
+                    <group string="Comercial" colspan="4">
+                        <group colspan="4" col="4">
+                            <field name="currency_id"/>
+                            <field name="price"/>
+                            <field name="st_commercial"/>
+                        </group>
+                    </group>
+                    <group string="Datos de construcción" colspan="4">
+                        <group colspan="4" col="4">
+                            <field name="contract_modality"/>
+                            <field name="covered_area"/>
+                            <field name="free_area"/>
+                            <field name="occupied_area"/>
+                        </group>
+                    </group>
+                    <group string="Distribución" colspan="4">
+                        <group colspan="4" col="4">
+                            <field name="bedroom_number"/>
+                            <field name="bathroom_number"/>
+                            <field name="building_view"/>
+                            <field name="service_room"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- UNIT TREE VIEW -->
+    <record id="unit_tree_view" model="ir.ui.view">
+        <field name="name">unit.toratto.tree</field>
+        <field name="model">unit.toratto</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code" />
+                <field name="name" />
+                <field name="unit_type" />
+                <field name="sub_division" />
+                <field name="proyect_id" />
+                <field name="st_commercial" />
+            </tree>
+        </field>
+    </record>
+    <!-- UNIT ACTION -->
+    <record id="action_unit" model="ir.actions.act_window">
+        <field name="name">Unidades</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">unit.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear nueva unidad
+            </p>
+        </field>
+    </record>
+</odoo>
