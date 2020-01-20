@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record id="Administradora" model="res.groups">
+            <field name="name">Toratto/Administradora</field>
+        </record>
+    </data>
+</odoo>

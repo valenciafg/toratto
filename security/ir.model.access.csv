@@ -1,2 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_toratto_toratto,toratto.toratto,model_toratto_toratto,base.group_user,1,1,1,1
+access_toratto_toratto,toratto.toratto,model_project_toratto,,1,1,1,1
+access_contact_toratto,contact.toratto,model_contact_toratto,,1,1,1,0
+access_construction_state_toratto,construction_state.toratto,model_construction_state_toratto,,1,1,1,1
+access_project_type_toratto,project_type.toratto,model_project_type_toratto,,1,1,1,1
+access_owner_toratto,owner.toratto,model_owner_toratto,,1,1,1,1
+access_building_type_toratto,building_type.toratto,model_building_type_toratto,,1,1,1,1
+access_funders_toratto,funders.toratto,model_funders_toratto,,1,1,1,1
+access_district_toratto,district.toratto,model_district_toratto,,1,1,1,1
+access_province_toratto,province.toratto,model_province_toratto,,1,1,1,1
+access_unit_toratto,unit.toratto,model_unit_toratto,,1,1,1,1
