@@ -29,7 +29,6 @@
         'views/unit_type_view.xml',
         'views/menu.xml',
         'views/settings.xml',
-        'views/acquisition.xml',
         'views/res_country_view.xml',
     ],
     # only loaded in demonstration mode

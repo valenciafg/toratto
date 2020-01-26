@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+<!-- PROJECT FROM VIEW -->
+    <record id="acquisition_form_view" model="ir.ui.view">
+        <field name="name">acquisition.toratto.form</field>
+        <field name="model">acquisition.toratto</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="General" colspan="4">
+                        <group colspan="4" col="4">
+                            <field name="name"/>
+                            <field name="proforma"/>
+                            <field name="unit"/>
+                            <field name="st_commercial"/>
+                            <field name="client"/>
+                            <field name="user"/>
+                            <field name="quantity_unit"/>
+                            <field name="financing"/>
+                            <field name="separation_date"/>
+                            <field name="approval_date"/>
+                            <field name="currency_id"/>
+                            <field name="total_cost"/>
+                            <field name="pending_payments"/>
+                            <field name="made_payments"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!-- UNIT TREE VIEW -->
+    <record id="acquisition_tree_view" model="ir.ui.view">
+        <field name="name">acquisition.toratto.tree</field>
+        <field name="model">acquisition.toratto</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="proforma" />
+                <field name="unit" />
+                <field name="client" />
+                <field name="user" />
+		<field name="st_commercial" />
+		<field name="financing" />
+		<field name="quantity_unit" />
+		<field name="separation_date" />
+		<field name="pending_payments" />
+            </tree>
+        </field>
+    </record>
+
+<!-- UNIT ACTION -->
+    <record id="action_acquisition" model="ir.actions.act_window">
+        <field name="name">Adquisición</field>
+        <field name="res_model">acquisition.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smilling_face">
+                Registrar Nueva Adquisición
+            </p>
+        </field>
+    </record>
+
+    <!--record id="action_district" model="ir.actions.act_window">
+        <field name="name">Distrito</field>
+        <field name="res_model">district.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smilling_face">
+                Registrar nuevo distrito
+            </p>
+        </field>
+    </record-->
+    <!-- MAIN MENU -->
+    <menuitem id="acquisition_main_menu" name="Adquisición" parent="toratto_root"/>
+    <!-- SINGLE MENU ITEMS -->
+    <menuitem id="acquisition_menu" name="Adquisición" parent="acquisition_main_menu" action="action_acquisition" sequence="0"/>
+    <!-- menuitem id="district_menu" name="Distritos" parent="settings_main_menu" action="action_district" sequence="1"/-->
+</odoo>

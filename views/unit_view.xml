@@ -13,6 +13,7 @@
                             <field name="proyect_id"/>
                             <field name="code"/>
                             <field name="name"/>
+                            <field name="logo"/>
                             <field name="floor_number"/>
                             <field name="unit_type"/>
                             <field name="sub_division"/>
@@ -22,12 +23,17 @@
                         <group colspan="4" col="4">
                             <field name="currency_id"/>
                             <field name="price"/>
+                            <field name="tea"/>
+                            <field name="discount"/>
+                            <field name="m2_price"/>
                             <field name="st_commercial"/>
+                            <field name="sale_date"/>
+                            <field name="contract_modality"/>
+                            <field name="funder_type_id"/>
                         </group>
                     </group>
                     <group string="Datos de construcción" colspan="4">
                         <group colspan="4" col="4">
-                            <field name="contract_modality"/>
                             <field name="covered_area"/>
                             <field name="free_area"/>
                             <field name="occupied_area"/>
@@ -54,18 +60,52 @@
                 <field name="code" />
                 <field name="name" />
                 <field name="unit_type" />
-                <field name="sub_division" />
                 <field name="proyect_id" />
+                <field name="m2_price" />
+		<field name="price" />
                 <field name="st_commercial" />
             </tree>
         </field>
     </record>
+<!-- UNIT KANBAN VIEW -->
+    <record id="unit_kanban_view" model="ir.ui.view">
+        <field name="name">unit.toratto.kanban</field>
+        <field name="model">unit.toratto</field>
+        <field name="arch" type="xml">
+	    <kanban>
+                <field name="id" />
+                <field name="name" />
+                <field name="code" />
+		<templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click o_kanban_record_has_image_fill">
+			    <div class="o_kanban_image">
+                                <img alt="Avatar" t-att-src="kanban_image('unit.toratto', 'logo',record.id.raw_value)"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong><field name="name"/></strong>
+                                <div class="o_kanban_tags_section">
+                                    <ul>
+					<li><field name="code"/></li>
+                                        <li><field name="proyect_id"/></li>
+                                        <li><field name="unit_type"/></li>
+                                        <li><field name="price"/></li>
+                                        <li><field name="st_commercial"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+   </record>
     <!-- UNIT ACTION -->
     <record id="action_unit" model="ir.actions.act_window">
         <field name="name">Unidades</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">unit.toratto</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Crear nueva unidad

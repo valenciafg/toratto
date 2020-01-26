@@ -14,7 +14,6 @@
                             <field name="logo"/>
                             <field name="code"/>
                             <field name="currency_id"/>
-                            <field name="building_type_id"/>
                         </group>
                         <group colspan="2" col="2">
                             <field name="sale_start_date"/>
@@ -67,7 +66,6 @@
             <tree>
                 <field name="code" />
                 <field name="name" />
-                <field name="building_type_id" />
                 <field name="province_id" />
                 <field name="district_id" />
                 <field name="address" />
@@ -94,7 +92,6 @@
                                 <div class="o_kanban_tags_section">
                                     <ul>
                                         <li><field name="code"/></li>
-                                        <li><field name="building_type_id"/></li>
                                         <li><field name="province_id"/></li>
                                         <li><field name="district_id"/></li>
                                         <li><field name="address"/></li>

@@ -45,13 +45,13 @@ class Project(models.Model):
     logo = fields.Binary(string='Logo', attachment=True)
     currency_id = fields.Many2one('res.currency',
         ondelete='set null', string="Moneda", index=True)
-    building_type_id = fields.Many2one('building.type.toratto',
-        ondelete='set null', string="Tipo de Edificación", index=True)
+   # building_type_id = fields.Many2one('building.type.toratto',
+        #ondelete='set null', string="Tipo de Edificación", index=True)
     sale_start_date = fields.Date(
         string='Fecha de inicio de venta',
         default=fields.Date.context_today,
     )    
-    funders_id = fields.Many2many('funders.toratto', string="Financiamiento")
+    funders_id = fields.Many2one('funders.toratto', string="Entidad Bancaria")
     amount_of_letter_separation = fields.Monetary(string="Monto de separación de letra")
     project_type_id = fields.Many2one('project.type.toratto',
         ondelete='set null', string="Tipo de Proyecto", index=True)
