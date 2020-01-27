@@ -19,11 +19,12 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'account'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'views/res_partner_view.xml',
         'views/project_view.xml',
         'views/unit_view.xml',
         'views/unit_type_view.xml',
@@ -31,6 +32,8 @@
         'views/settings.xml',
         'views/acquisition.xml',
         'views/res_country_view.xml',
+        'views/einvoice_view.xml',
+        'data/einvoice_data.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

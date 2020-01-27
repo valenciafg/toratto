@@ -1,49 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <openerp>
-	<data>	
-		<record model='ir.ui.view' id='toponyms_view_partner_inherit'>
-			<field name='name'>toponyms.res.partner.inherit</field>
-			<field name='model'>res.partner</field>
-			<field name='inherit_id' ref='base.view_partner_form'/>
-			<field name='type'>form</field>
-			<field name='arch' type='xml'>
-                <field name="country_id" position="replace"/>
-                <field name="state_id" position="replace"/>
-                <field name="country_id" position="replace"/>
-                <field name="zip" position="replace"/>
-                <field name="city" position="replace"/>
-                <field name="street2" position="replace">
-                    <field name="street2" placeholder="Urbanización o Zona" class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
-                    <field name="country_id" placeholder="País" class="o_address_city" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/> 
-                    <field name="state_id" class="o_address_city" placeholder="Departamento" options="{&quot;no_open&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"  domain="[('country_id', '=', country_id),('state_id', '=', False),('province_id', '=', False)]"/>
-                    <field name="province_id" class="o_address_city" placeholder="Provincia" options="{&quot;no_open&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" domain="[('country_id', '=', country_id),('state_id', '=', state_id),('province_id', '=', False)]"/>
-                    <field name="district_id" class="o_address_city" placeholder="Distrito" options="{&quot;no_open&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" domain="[('country_id', '=', country_id),('state_id', '=', state_id),('province_id', '=', province_id)]"/>
-                    <field name="zip" placeholder="Código postal" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
-                    <field name="city" placeholder="Otra referencia" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>    
-                </field>
-			</field>
-		</record>
-        
-        <!-- Open partner address -->
-        <record id="view_odoope_partner_address_form" model="ir.ui.view">
-            <field name="name">odoope.res.partner.form.address</field>
+    <data>
+
+        <record id="view_partner_form" model="ir.ui.view">
             <field name="model">res.partner</field>
-            <field name='inherit_id' ref='base.view_partner_address_form'/>
+            <field name="inherit_id" ref="base.view_partner_form" />
             <field name="arch" type="xml">
-                <div class="o_address_format" position="replace">                    
-                    <div class="o_address_format">
-                        <field name="street" placeholder="Street..." class="o_address_street"/>
-                        <field name="street2" placeholder="Urbanización o Zona" class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
-                    <field name="country_id" placeholder="Country" class="o_address_city" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/> 
-                    <field name="state_id" class="o_address_state" placeholder="Departamento" options="{&quot;no_open&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"  domain="[('country_id', '=', country_id),('state_id', '=', False),('province_id', '=', False)]"/>
-                    <field name="province_id" class="o_address_city" placeholder="Provincia" style="width: 48%" options="{&quot;no_open&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" domain="[('country_id', '=', country_id),('state_id', '=', state_id),('province_id', '=', False)]"/>
-                    <field name="district_id" class="o_address_state" placeholder="Distrito" style="width: 48%" options="{&quot;no_open&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" domain="[('country_id', '=', country_id),('state_id', '=', state_id),('province_id', '=', province_id)]"/>
-                    <field name="zip" placeholder="ZIP" style="width: 48%" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
-                    <field name="city" placeholder="Otra referencia" style="width: 48%" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/> 
+                <sheet position="before">
+                    <header>
+                        <button string="Actulizar datos RUC" type="object" name="update_document"/>
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="habido,nhabido" statusbar_colors="{&quot;habido&quot;:&quot;green&quot;,&quot;nhabido&quot;:&quot;red&quot;}" readonly="0"/>
+                    </header>                        
+                </sheet>
+                <field name="vat" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <div class="o_row" position="before">
+                    <div class="o_row">
+                        <field name="catalog_06_id" placeholder="Tipo Doc.x" colspan="1" nolabel="1" widget="selection"/>
+                        <field name="vat" placeholder="Número de Documentoxx" colspan="3" nolabel="1"/>   
+                    </div> 
+                    <div class="oe_left"> 
+                        <field name="registration_name" placeholder="Razón social" attrs="{'invisible': [('is_company','=',False)],'required': [('is_company','=',True)]}" /> 
                     </div>
-                                   
-				</div>
+                </div>
             </field>
         </record>
-	</data>
+
+        <!-- res.partner inherit form view -->
+        <record id="res_partner_kanban_view_inherit" model="ir.ui.view">
+            <field name="name">res.partner.inherit.view.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban//div[hasclass('oe_kanban_details')]//ul/li[1]" position="before">
+                    <li t-if="record.vat.raw_value"><field t-if="record.catalog_06_id.raw_value" name="catalog_06_id"/>- <field name="vat"/></li>
+                </xpath>                
+            </field>
+        </record>
+
+        <!-- res.partner inherit search view -->
+        <record id="view_res_partner_filter_inherit" model="ir.ui.view">
+            <field name="name">res.partner.inherit.view.search</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" replace="replace">
+                    <field name="name" filter_domain="['|','|','|',('display_name','ilike',self),('ref','=',self),('email','ilike',self),('vat','ilike',self)]"/>    
+                </field>            
+            </field>
+        </record>
+
+    </data>
 </openerp>
