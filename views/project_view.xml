@@ -29,6 +29,7 @@
                             <field name="amount_of_separacion"/>
                             <field name="type_of_bank_account"/>
                             <field name="number_of_floors"/>
+                            <field name="number_of_unit"/>
                         </group>
                         <group colspan="2" col="2">
                             <field name="description"/>
@@ -91,10 +92,11 @@
                                 <strong><field name="name"/></strong>
                                 <div class="o_kanban_tags_section">
                                     <ul>
-                                        <li><field name="code"/></li>
+                                        <li><field name="project_type_id"/></li>
                                         <li><field name="province_id"/></li>
                                         <li><field name="district_id"/></li>
                                         <li><field name="address"/></li>
+                                        <li><field name="number_of_unit"/></li>
                                     </ul>
                                 </div>
                             </div>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<openerp>
+<odoo>
 	<data noupdate="0">		
         <!-- Lista de Departamentos/Regiones -->
         <record model='res.country.state' id="base.state_pe_01"><field name="name">AMAZONAS</field><field name="code">01</field><field name="country_id" ref="base.pe"/></record>
@@ -28,4 +28,4 @@
         <record model='res.country.state' id="base.state_pe_24"><field name="name">(vacío)</field><field name="code">24</field><field name="country_id" ref="base.pe"/></record>
         <record model='res.country.state' id="base.state_pe_25"><field name="name">UCAYALI</field><field name="code">25</field><field name="country_id" ref="base.pe"/></record>
     </data>
-</openerp>
+</odoo>

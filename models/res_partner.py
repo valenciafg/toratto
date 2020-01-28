@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-
+from odoo import models, fields, api
 import logging
 from PIL import Image
 import requests
@@ -29,7 +29,6 @@ try:
 except ImportError:
     from io import StringIO ## for Python 3
 from lxml import etree
-from odoo import models, fields, api
 from odoo.exceptions import Warning
 
 import requests
@@ -62,9 +61,9 @@ class ResPartner(models.Model):
     _name = 'res.partner'
     _inherit = 'res.partner'
 
-    registration_name = fields.Char('Registration Name', size=128, index=True, )
-    catalog_06_id = fields.Many2one('einvoice.catalog.06','Tipo Doc.', index=True)
-    state = fields.Selection([('habido','Habido'),('nhabido','No Habido')],'State')
+#    registration_name = fields.Char('Registration Name', size=128, index=True, )
+ #   catalog_06_id = fields.Many2one('einvoice.catalog.06','Tipo Doc.', index=True)
+  #  state = fields.Selection([('habido','Habido'),('nhabido','No Habido')],'State')
     """
     def _get_captcha(self, type):
         s = requests.Session() 
@@ -222,7 +221,7 @@ class ResPartner(models.Model):
         else:
             return False
     """
-    @api.onchange('catalog_06_id','vat')
+   # @api.onchange('catalog_06_id','vat')
     def vat_change(self):
         self.update_document()
         
@@ -282,9 +281,10 @@ class ResPartner(models.Model):
                 self.state = tstate
             
                 self.name = d['nombre_comercial'] != '-' and d['nombre_comercial'] or d['nombre']
-                self.registration_name = d['nombre']
+                #self.registration_name = d['nombre']
                 self.street = d['domicilio_fiscal']
                 self.vat_subjected = True
                 self.is_company = True
         else:
             True
+

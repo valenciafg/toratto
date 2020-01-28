@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
-    <!--
+    
     <record id="action_contact" model="ir.actions.act_window">
         <field name="name">Contacto</field>
         <field name="res_model">res.partner</field>
@@ -12,7 +12,7 @@
             </p>
         </field>
     </record>
-    -->
+    
     <record id="action_construction_state" model="ir.actions.act_window">
         <field name="name">Estado de construccion</field>
         <field name="res_model">construction_state.toratto</field>
@@ -88,7 +88,7 @@
     <menuitem id="funder_type_menu" name="Tipo de Financiamiento" parent="project_main_menu" action="action_funder_type" sequence="5"/>
     <menuitem id="funder_menu" name="Entidad Bancaria" parent="project_main_menu" action="action_funder" sequence="5"/>
     <menuitem id="owner_menu" name="Propietarios" parent="project_main_menu" action="action_owner" sequence="6"/>
-    <!--<menuitem id="contact_menu" name="Clientes" parent="project_main_menu" action="action_contact" sequence="7"/>-->
+    <menuitem id="contact_menu" name="Clientes" parent="project_main_menu" action="action_contact" sequence="7"/>
     <menuitem id="construction_state_menu" name="Estados de Construccion" parent="project_main_menu" action="action_construction_state" sequence="8"/>
-    <menuitem id="einvoice_menu" name="Tipos Doc. Identidad" parent="project_main_menu" action="catalog_06_action" sequence="9"/>
+    <!--menuitem id="einvoice_menu" name="Tipos Doc. Identidad" parent="project_main_menu" action="catalog_06_action" sequence="9"/-->
 </odoo>

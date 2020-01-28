@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data noupdate="0">
 
         <!-- Catalogo 06 - Tipos de documento de Identitdad -->
@@ -12,4 +12,4 @@
         <record id="e06_-" model="einvoice.catalog.06"><field name="code">-</field><field name="name">Varios - Ventas menores a S/.700.00 y otros</field></record>
        
     </data>
-</openerp>
+</odoo>

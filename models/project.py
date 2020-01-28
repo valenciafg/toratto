@@ -61,6 +61,7 @@ class Project(models.Model):
     amount_of_separacion = fields.Monetary(string="Monto de separación")
     type_of_bank_account = fields.Char(string="Tipo de cuenta bancaria", size=100)
     number_of_floors = fields.Integer(string="Número de pisos")
+    number_of_unit = fields.Integer(string="Número de Unidades")
     description = fields.Text(string="Descripción")
     #construction_dt_start = fields.Date.today()
     contact_id = fields.Many2one('contact.toratto',
