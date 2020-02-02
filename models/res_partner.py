@@ -30,30 +30,46 @@ except ImportError:
     from io import StringIO ## for Python 3
 from lxml import etree
 from odoo.exceptions import Warning
+import http.client
+import json
 
 import requests
 
 def get_data_doc_number(tipo_doc, numero_doc, format='json'):
-    user, password = 'demorest', 'demo1234'
-    url = 'http://py-devs.com/api'
-    url = '%s/%s/%s' % (url, tipo_doc, str(numero_doc))
-    print(url)
-    res = {'error': True, 'message': None, 'data': {}}
-    try:
-        response = requests.get(url, auth=(user, password))
-    except requests.exceptions.ConnectionError as e:
-        res['message'] = 'Error en la conexion'
-        return res
-
-    if response.status_code == 200:
-        res['error'] = False
-        print(response.json())
-        res['data'] = response.json()
+    conn = http.client.HTTPSConnection('api.migoperu.pe')
+    headers = {
+    'Content-type': 'application/json',
+    'Accept': 'application/json'
+    }
+    token_code = 'f877da41-3a1e-4b87-a58b-8a4d92c8926d-6e1634f5-0cab-4156-977a-1072f49a2d1e'
+    if tipo_doc == "ruc":
+        post_body = {
+        'token': token_code,
+        'ruc': numero_doc
+        }
+        api_end_point = "/api/v1/ruc"
     else:
-        try:
-            res['message'] = response.json()['detail']
-        except Exception as e:
-            res['error'] = True
+        post_body = {
+        'token': token_code,
+        'dni': numero_doc
+        }
+        api_end_point = "/api/v1/dni"
+    json_data = json.dumps(post_body)
+    conn.request('POST', api_end_point, json_data, headers)
+    response = conn.getresponse()
+    data = response.read()
+    print(data)
+    print(response.status, response.reason)
+    res = {'error': True, 'message': None, 'data': {}}
+    if response.status == 200:
+        res['error'] = False
+        print("entro aqui")
+        print(data)
+        print(data.decode())
+        res['data'] = json.loads(data.decode())
+    else:
+        res['error'] = True
+        res['message'] = "xxxx"
     return res
 
 
@@ -61,9 +77,9 @@ class ResPartner(models.Model):
     _name = 'res.partner'
     _inherit = 'res.partner'
 
-#    registration_name = fields.Char('Registration Name', size=128, index=True, )
- #   catalog_06_id = fields.Many2one('einvoice.catalog.06','Tipo Doc.', index=True)
-  #  state = fields.Selection([('habido','Habido'),('nhabido','No Habido')],'State')
+    #registration_name = fields.Char('Registration Name', size=128)
+    #catalog_06_id = fields.Many2one('einvoice.catalog.06','Tipo Doc.', index=True)
+    #state = fields.Selection([('habido','Habido'),('nhabido','No Habido')],'State')
     """
     def _get_captcha(self, type):
         s = requests.Session() 
@@ -221,7 +237,7 @@ class ResPartner(models.Model):
         else:
             return False
     """
-   # @api.onchange('catalog_06_id','vat')
+    @api.onchange('l10n_latam_identification_type_id','vat')
     def vat_change(self):
         self.update_document()
         
@@ -229,62 +245,39 @@ class ResPartner(models.Model):
         print("*****update_document******")
         if not self.vat:
             return False
-        print(self.catalog_06_id.code)
-        print(self.catalog_06_id.name)
-        print(self.vat)
-        if self.catalog_06_id and self.catalog_06_id.name == 'DNI':
-           #Valida DNI
-            if self.vat and len(self.vat) != 8:
-                raise Warning('El Dni debe tener 8 caracteres')
-            else:
-                d = get_data_doc_number(
-                    'dni', self.vat, format='json')
-                if not d['error']:
-                    d = d['data']
-                    self.name = '%s %s %s' % (d['nombres'],
-                                               d['ape_paterno'],
-                                               d['ape_materno'])
 
-        elif self.catalog_06_id and self.catalog_06_id.name == 'RUC':
+        #print(self.l10n_pe_vat_code.l10n_pe_vat_code)
+        #print(self.l10n_pe_vat_code.name)
+        print(self.l10n_latam_identification_type_id.id)
+        print(self.l10n_latam_identification_type_id.name)
+        print(self.vat)
+        tipo_doc_name = self.l10n_latam_identification_type_id.name
+        tipo_doc_id = self.l10n_latam_identification_type_id.id
+        nro_doc = self.vat
+        if self.l10n_latam_identification_type_id and self.l10n_latam_identification_type_id.name == 'VAT':
             # Valida RUC
             if self.vat and len(self.vat) != 11:
                 raise Warning('El Ruc debe tener 11 caracteres')
             else:
                 d = get_data_doc_number(
                     'ruc', self.vat, format='json')
+                print("---")
+                #print(d)
                 if d['error']:
                     print("???")
                     return True
                 d = d['data']
-                """
-                #~ Busca el distrito
-                ditrict_obj = self.env['res.country.state']
-                prov_ids = ditrict_obj.search([('name', '=', d['provincia']),
-                                               ('province_id', '=', False),
-                                               ('state_id', '!=', False)])
-                dist_id = ditrict_obj.search([('name', '=', d['distrito']),
-                                              ('province_id', '!=', False),
-                                              ('state_id', '!=', False),
-                                              ('province_id', 'in', [x.id for x in prov_ids])], limit=1)
-                if dist_id:
-                    self.district_id = dist_id.id
-                    self.province_id = dist_id.province_id.id
-                    self.state_id = dist_id.state_id.id
-                    self.country_id = dist_id.country_id.id
-                """
-                # Si es HABIDO, caso contrario es NO HABIDO
-                tstate = d['condicion_contribuyente']
-                if tstate == 'HABIDO':
-                    tstate = 'habido'
-                else:
-                    tstate = 'nhabido'
-                self.state = tstate
-            
-                self.name = d['nombre_comercial'] != '-' and d['nombre_comercial'] or d['nombre']
-                #self.registration_name = d['nombre']
-                self.street = d['domicilio_fiscal']
+                print(d)
+                print(type(d))
+                self.name = d['nombre_o_razon_social']
+                self.street = d['direccion']
                 self.vat_subjected = True
                 self.is_company = True
-        else:
-            True
+        if self.l10n_latam_identification_type_id and self.l10n_latam_identification_type_id.name == 'DNI':
+            d = get_data_doc_number(
+                    'dni', self.vat, format='json')
+            if not d['error']:
+                d = d['data']
+                self.name = d['nombre']
+        return True
 

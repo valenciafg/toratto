@@ -2,7 +2,7 @@
 
 #from . import models
 #from . import minimal
-#from . import res_partner
+from . import res_partner
 #from . import einvoice
 from . import project_type
 from . import funders
