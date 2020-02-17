@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">  
+        <!--
+        <record id="it_vat" model="l10n_latam.identification.type">
+            <field name="name">RUC</field>
+            <field name="description">Registro Unico de Contribuyente</field>
+            <field name="is_vat">True</field>
+            <field name="l10n_pe_vat_code">6</field>
+        </record>
+        -->
+        <record id="it_ruc" model="l10n_latam.identification.type">
+            <field name="name">RUC</field>
+            <field name="description">Registro Unico de Contribuyente</field>
+            <field name="is_vat">True</field>
+            <field name="country_id">173</field>
+            <field name="l10n_pe_vat_code">6</field>
+        </record> 
+    </data>
+</odoo>

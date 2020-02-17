@@ -18,7 +18,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'account'],
+    'depends': ['base', 'account', 'sale_management', 'contacts'],
 
     # always loaded
     'data': [
@@ -34,7 +34,8 @@
         'views/res_country_view.xml',
         'views/res_country_data.xml',
         'views/res_partner_view.xml',
-#        'data/einvoice_data.xml',
+        'views/product_template_view.xml',
+        'data/l10n_latam.identification.type.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
