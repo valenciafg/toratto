@@ -3,18 +3,42 @@
     <data>
         <record id="product_template_view_form" model="ir.ui.view">
             <field name="model">product.template</field>
-            <field name="inherit_id" ref="product.product_template_only_form_view" />
+            <field name="inherit_id" ref="product.product_template_form_view" />
             <field name="arch" type="xml">
-                <div class="o_row" position="before">
-                    <div class="o_row">
-                        <field name="code" placeholder="Código"/>
-                    </div> 
-                </div>
-                <!--
-                <group name="unit_group" position="inside">
-                    <field name="code" placeholder="Código"/>
-                </group>
-                -->
+                <xpath expr="//page[@name='general_information']" position="after">
+                    <page string="Unidades" name="units">
+                        <group>
+                            <group string="Generales" name="group_unit_general">
+                                <field name="code" placeholder="Código"/>
+                                <field name="proyect_id" placeholder="Proyecto"/>
+                                <field name="unit_type" placeholder="Tipo de Unidad"/>
+                                <field name="sub_division" placeholder="Subdivisión"/>
+                                <field name="floor_number" placeholder="Piso"/>
+                            </group>
+                            <group string="Comercial" name="group_unit_comercial">
+                                <field name="st_commercial" placeholder="Estado Comercial"/>
+                                <field name="currency_id" placeholder="Moneda"/>
+                                <field name="discount" placeholder="Descuento Especial"/>
+                                <field name="m2_price" placeholder="Precio M2"/>
+                                <field name="sale_date" placeholder="Fecha de Venta"/>
+                                <field name="tea" placeholder="Tasa Efectiva Anual %"/>
+                                <field name="contract_modality" placeholder="Modalidad de contrato"/>
+                                <field name="funder_type_id" placeholder="Tipo de Financiamiento"/>
+                            </group>
+                            <group string="Datos de construcción" name="group_unit_construction">
+                                <field name="occupied_area" placeholder="Area Ocupada m2"/>
+                                <field name="covered_area" placeholder="Area Techada m2"/>
+                                <field name="free_area" placeholder="Area Libre m2"/>
+                            </group>
+                            <group string="Distribución" name="group_unit_construction">
+                                <field name="bedroom_number" placeholder="Cantidad de dormitorios"/>
+                                <field name="bathroom_number" placeholder="Cantidad de baños"/>
+                                <field name="building_view" placeholder="Vista del Departamento"/>
+                                <field name="service_room" placeholder="Cuarto de Servicio"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
             </field>
         </record>
     </data>

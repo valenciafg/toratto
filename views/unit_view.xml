@@ -104,7 +104,7 @@
     <record id="action_unit" model="ir.actions.act_window">
         <field name="name">Unidades</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">unit.toratto</field>
+        <field name="res_model">product.template</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
