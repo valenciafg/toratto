@@ -35,6 +35,7 @@
         'views/res_country_data.xml',
         'views/res_partner_view.xml',
         'views/product_template_view.xml',
+        'views/report.xml',
         'data/l10n_latam.identification.type.xml',
     ],
     # only loaded in demonstration mode
