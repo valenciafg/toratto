@@ -20,6 +20,7 @@
                         </group>
                         <group colspan="2" col="2">
                             <field name="funders_id"/>
+                            <field name="bank"/>
                         </group>
                         <group colspan="4" col="4">
                             <field name="amount_of_letter_separation"/>
@@ -112,9 +113,10 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">project.toratto</field>
         <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'default_is_company': True}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Crear nuevo proyecto
+                Crear Nuevo Proyecto
             </p>
         </field>
     </record>

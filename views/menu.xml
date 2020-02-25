@@ -25,7 +25,7 @@
     </record>
     <record id="action_owner" model="ir.actions.act_window">
         <field name="name">Propietarios</field>
-        <field name="res_model">owner.toratto</field>
+        <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -35,7 +35,7 @@
     </record>
     <record id="action_funder" model="ir.actions.act_window">
         <field name="name">Entidad Bancaria</field>
-        <field name="res_model">funders.toratto</field>
+        <field name="res_model">res.bank</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smilling_face">
@@ -43,6 +43,17 @@
             </p>
         </field>
     </record>
+    <record id="action_funder_type" model="ir.actions.act_window">
+        <field name="name">Tipo de Financiamiento</field>
+        <field name="res_model">funder.type.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smilling_face">
+                Registrar Nuevo Tipo de Financiamiento
+            </p>
+        </field>
+    </record>
+
     <record id="action_project_type" model="ir.actions.act_window">
         <field name="name">Tipos de proyecto</field>
         <field name="res_model">project.type.toratto</field>
@@ -64,31 +75,14 @@
             </p>
         </field>
     </record-->
-    <record id="action_funder_type" model="ir.actions.act_window">
-        <field name="name">Tipo de Financiamiento</field>
-        <field name="res_model">funder.type.toratto</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smilling_face">
-                Registrar Nuevo Tipo de Financiamiento
-            </p>
-        </field>
-    </record>
     
     <!-- TOP LEVEL MENU -->
-    <menuitem id="toratto_root" name="Toratto" sequence="0" />
+    <menuitem id="toratto_root" name="Toratto" sequence="0" web_icon="toratto,static/description/icon.png" groups="base.group_user,base.group_partner_manager" />
     <!-- MAIN MENU -->
     <menuitem id="project_main_menu" name="Proyectos" parent="toratto_root"/>
     <!-- SINGLE MENU ITEMS -->
     <menuitem id="project_menu" name="Proyectos" parent="project_main_menu" action="action_project" sequence="0"/>
     <menuitem id="unit_menu" name="Unidades" parent="project_main_menu" action="action_unit" sequence="1"/>
-    <menuitem id="project_type_menu" name="Tipos de Proyectos" parent="project_main_menu" action="action_project_type" sequence="2"/>
     <menuitem id="unit_type_menu" name="Tipos de Unidad" parent="project_main_menu" action="action_unit_type" sequence="2"/>
-    <!-- menuitem id="building_type_menu" name="Tipo de Edificación" parent="project_main_menu" action="action_building_type" sequence="4"/-->
-    <menuitem id="funder_type_menu" name="Tipo de Financiamiento" parent="project_main_menu" action="action_funder_type" sequence="5"/>
-    <menuitem id="funder_menu" name="Entidad Bancaria" parent="project_main_menu" action="action_funder" sequence="5"/>
-    <menuitem id="owner_menu" name="Propietarios" parent="project_main_menu" action="action_owner" sequence="6"/>
-    <menuitem id="contact_menu" name="Clientes" parent="project_main_menu" action="action_contact" sequence="7"/>
-    <menuitem id="construction_state_menu" name="Estados de Construccion" parent="project_main_menu" action="action_construction_state" sequence="8"/>
-    <!--menuitem id="einvoice_menu" name="Tipos Doc. Identidad" parent="project_main_menu" action="catalog_06_action" sequence="9"/-->
+    <menuitem id="quotation_menu" name="Mis Cotizaciones" parent="project_main_menu" action="sale.action_quotations" sequence="9" groups="base.group_system"/>
 </odoo>

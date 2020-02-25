@@ -37,8 +37,10 @@ class Unit(models.Model):
         string='Modalidad de contrato',
         selection=[('COMPROMISO', 'Compromiso'), ('CONTRATO', 'Contrato')]
     )
+
     funder_type_id = fields.Many2one('funder.type.toratto',
         ondelete='set null', string="Tipo de Financiamiento", index=True)
+
     #   CONTRUCTION
     occupied_area = fields.Float(
         string='Area Ocupada m2',
@@ -60,3 +62,10 @@ class Unit(models.Model):
     building_view = fields.Char(string="Vista del Departamento", required=True, size=50)
     service_room = fields.Char(string="Cuarto de Servicio", required=True, size=20)
     
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': ('Importar Unidades'),
+            'template': '/toratto/static/xls/unit.toratto.xlsx'
+        }]
+
