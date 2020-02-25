@@ -21,17 +21,101 @@
                             <span t-field="o.name"/>
                             <span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy"}'/>
                             <!--DATOS DEL ASESOR-->
+                            <!--
                             <span t-field="o.user_id.partner_id.name"/>
                             <span t-field="o.user_id.partner_id.email"/>
                             <span t-field="o.user_id.partner_id.phone"/>
                             <span t-field="o.user_id.partner_id.mobile"/>
+                            -->
+                            <div style="border: 1px solid black;padding:5px;">
+                                <div class="row">
+                                    <span>INFORMACION DEL EJECUTIVO DE VENTAS</span>
+                                </div>
+                                <div class="row">
+                                    <span>ASESOR:</span>
+                                    <span t-field="o.user_id.partner_id.name"/>
+                                    <span>EMAIL:</span>
+                                    <span t-field="o.user_id.partner_id.email"/>
+                                </div>
+                                <div class="row">
+                                    <span>TELEFONO:</span>
+                                    <span t-field="o.user_id.partner_id.phone"/>
+                                    <span>CELULAR:</span>
+                                    <span t-field="o.user_id.partner_id.mobile"/>
+                                </div>
+                            </div>
                             <!--DATOS DEL CLIENTE-->
+                            <!--
                             <span t-field="o.partner_id.name"/>
                             <span t-field="o.partner_id.vat"/>
                             <span t-field="o.partner_id.l10n_latam_identification_type_id" />
                             <span t-field="o.partner_id.email"/>
                             <span t-field="o.partner_id.phone"/>
                             <span t-field="o.partner_id.mobile"/>
+                            -->
+                            <div style="border: 1px solid black;padding:5px;">
+                                <div class="row">
+                                    <span>INFORMACION DEL CLIENTE</span>
+                                </div>
+                                <div class="row">
+                                    <span>SEÑOR(A):</span>
+                                    <span t-field="o.partner_id.name"/>
+                                </div>
+                                <div class="row">
+                                    <span>EMAIL:</span>
+                                    <span t-field="o.partner_id.email"/>
+                                </div>
+                                <div class="row">
+                                    <span>Nº DOC:</span>
+                                    <span t-field="o.partner_id.vat"/>
+                                    <span>TELEFONOS:</span>
+                                    <span t-field="o.partner_id.phone"/>
+                                    <span t-field="o.partner_id.mobile"/>
+                                </div>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Inmueble y Numero</th>
+                                        <th scope="col">Piso</th>
+                                        <th scope="col">Vista</th>
+                                        <th scope="col">Area Techada</th>
+                                        <th scope="col">Area no Techada</th>
+                                        <th scope="col">Area Total</th>
+                                        <th scope="col">Precio de Venta</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-striped">
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                </tbody>
+                                </table>
+                            <!--
                             <div class="row">
                                 <div class="col-xs-3">
                                 xxxx
@@ -42,18 +126,14 @@
                                     <div style="border-bottom: 1px solid black;">xxxx</div>
                                 </div>
                             </div>
-                            <div class="container">
+                            -->
                             <div class="row">
-                                <div class="col-xs-2"> </div>
                                 <div class="col-xs-3" style="border-top: 1px solid black;">
                                     <span t-field="o.partner_id.name"/>
                                 </div>
-                                <div class="col-xs-2" />
                                 <div class="col-xs-3" style="border-top: 1px solid black;">
                                     <span t-field="o.user_id.partner_id.name"/>
                                 </div>
-                                <div class="col-xs-2" />
-                            </div>
                             </div>
                         </div>
                         <div class="footer">
