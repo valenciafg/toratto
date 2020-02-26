@@ -6,6 +6,7 @@
             model="sale.order"
             report_type="qweb-pdf"
             name="toratto.report_custom_template"
+            print_report_name="'Cotizacion - %s' % (object.name)"
         />
         <template id="report_custom_template">
             <t t-call="web.html_container">
@@ -86,33 +87,19 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-striped">
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
-                                    </tr>
+                                    <t t-foreach="o.order_line" t-as="line">
+                                        <t t-set="prd" t-value="line.product_id"/>
+                                        <t t-set="total_area" t-value="prd.covered_area + prd.free_area"/>
+                                        <tr>
+                                            <td><span t-field="line.name"/></td>
+                                            <td><span t-field="prd.floor_number"/></td>
+                                            <td><span t-field="prd.building_view"/></td>
+                                            <td><span t-field="prd.covered_area"/></td>
+                                            <td><span t-field="prd.free_area"/></td>
+                                            <td><span t-esc="total_area"/></td>
+                                            <td><span t-field="line.price_total"/></td>
+                                        </tr>
+                                    </t>
                                 </tbody>
                                 </table>
                             <!--
