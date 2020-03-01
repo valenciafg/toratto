@@ -21,7 +21,7 @@ class ResPartner(models.Model):
     )
     currency_id = fields.Many2one('res.currency',
         ondelete='set null', string="Moneda", index=True)
-    price = fields.Monetary(string="Precio")
+    price = fields.Monetary(string="Precio de Venta")
     discount = fields.Monetary(string="Descuento Especial")
     m2_price = fields.Monetary(string="Precio M2")
     sale_date = fields.Date(
@@ -56,3 +56,6 @@ class ResPartner(models.Model):
     )
     building_view = fields.Char(string="Vista del Departamento", size=50)
     service_room = fields.Char(string="Cuarto de Servicio", size=20)
+    plans = fields.Many2one('plans.toratto',
+        string="Plano")
+

@@ -18,6 +18,7 @@
                             <group string="Comercial" name="group_unit_comercial">
                                 <field name="st_commercial" placeholder="Estado Comercial"/>
                                 <field name="currency_id" placeholder="Moneda"/>
+                                <field name="price" placeholder="Precio de Venta"/>
                                 <field name="discount" placeholder="Descuento Especial"/>
                                 <field name="m2_price" placeholder="Precio M2"/>
                                 <field name="sale_date" placeholder="Fecha de Venta"/>
@@ -35,11 +36,14 @@
                                 <field name="bathroom_number" placeholder="Cantidad de baños"/>
                                 <field name="building_view" placeholder="Vista del Departamento"/>
                                 <field name="service_room" placeholder="Cuarto de Servicio"/>
+                                <field name="plans" placeholder="Plano"/>
                             </group>
                         </group>
                     </page>
                 </xpath>
             </field>
         </record>
-    </data>
+        </data>
+
 </odoo>
+

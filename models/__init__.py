@@ -10,6 +10,7 @@ from . import funder_type
 #
 #Settings
 from . import district
+from . import plans
 #Acquisition
 from . import acquisition
 #

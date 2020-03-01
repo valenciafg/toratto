@@ -18,13 +18,15 @@ class Unit(models.Model):
         string='Piso',
     )
     #   COMERCIAL
-    st_commercial = fields.Selection(
-        string='Estado Comercial',
-        selection=[('DISPONIBLE', 'Disponible'), ('VENDIDO', 'Vendido'), ('SEPARADO', 'Separado')]
+    st_commercial = fields.Selection([
+                ('DISPONIBLE', 'Disponible'),
+                ('VENDIDO', 'Vendido'),
+                ('SEPARADO', 'Separado'),
+                ], string='Estado Comercial', default='DISPONIBLE'
     )
     currency_id = fields.Many2one('res.currency',
         ondelete='set null', string="Moneda", index=True)
-    price = fields.Monetary(string="Precio")
+    price = fields.Monetary(string="Precio de Ventas")
     discount = fields.Monetary(string="Descuento Especial")
     m2_price = fields.Monetary(string="Precio M2")
     sale_date = fields.Date(
@@ -61,6 +63,8 @@ class Unit(models.Model):
     )
     building_view = fields.Char(string="Vista del Departamento", required=True, size=50)
     service_room = fields.Char(string="Cuarto de Servicio", required=True, size=20)
+    plans = fields.Many2one('plans.toratto',
+        string="Plano")
     
     @api.model
     def get_import_templates(self):

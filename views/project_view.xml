@@ -93,11 +93,10 @@
                                 <strong><field name="name"/></strong>
                                 <div class="o_kanban_tags_section">
                                     <ul>
-                                        <li><field name="project_type_id"/></li>
-                                        <li><field name="province_id"/></li>
-                                        <li><field name="district_id"/></li>
-                                        <li><field name="address"/></li>
-                                        <li><field name="number_of_unit"/></li>
+                                        <li>Tipo: <field name="project_type_id"/></li>
+                                        <li>Distrito: <field name="district_id"/></li>
+                                        <li>Direccion: <field name="address"/></li>
+                                        <li>Cant. Unidades: <field name="number_of_unit"/></li>
                                     </ul>
                                 </div>
                             </div>

@@ -45,6 +45,7 @@
                             <field name="bathroom_number"/>
                             <field name="building_view"/>
                             <field name="service_room"/>
+                            <field name="plans"/>
                         </group>
                     </group>
                 </sheet>
