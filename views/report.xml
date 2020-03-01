@@ -14,19 +14,19 @@
                     <!--DATOS DE LA PROFORMA-->
                     <t t-foreach="docs" t-as="o">
                         <div class="row">
-                            <div style="width:300px">
-
+                            <div style="width:300px;text-align:left;">
+                                <img t-attf-src="data:image/*;base64,{{ o.company_id.logo }}" style="align:left; width:85px;height:85px;"/>
                             </div>
                             <div style="width:300px;text-align:center">
                                 <ul style="list-style-type:none;">
                                     <li><h4>PROFORMA</h4></li>
                                     <li><h4>Nº <span t-field="o.name"/></h4></li>
                                     <li>
-                                        <span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy"}'/>
+                                        <span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
                                     </li>
                                 </ul>
                             </div>
-                            <div style="width:300px">
+                            <div style="width:300px;text-align:right;">
                                 <t t-foreach="o.order_line" t-as="line">
                                     <t t-set="prd" t-value="line.product_id"/> 
                                     <img t-attf-src="data:image/*;base64,{{ prd.proyect_id.logo }}" style="align:left; width:85px;height:85px;"/>
