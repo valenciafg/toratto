@@ -9,67 +9,73 @@
             print_report_name="'Cotizacion - %s' % (object.name)"
         />
         <template id="report_custom_template">
+            <xpath expr="//div[@class='header']" position="replace">
+                <div class="header">
+                    <!--DATOS DE LA PROFORMA-->
+                    <t t-foreach="docs" t-as="o">
+                        <div class="row">
+                            <div style="width:300px">
+
+                            </div>
+                            <div style="width:300px;text-align:center">
+                                <ul style="list-style-type:none;">
+                                    <li><h4>PROFORMA</h4></li>
+                                    <li><h4>Nº <span t-field="o.name"/></h4></li>
+                                    <li>
+                                        <span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy"}'/>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div style="width:300px">
+                                <t t-foreach="o.order_line" t-as="line">
+                                    <t t-set="prd" t-value="line.product_id"/> 
+                                    <img t-attf-src="data:image/*;base64,{{ prd.proyect_id.logo }}" style="align:left; width:85px;height:85px;"/>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </xpath>
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.external_layout">
-                        <div class="header">
-                            PRUEBA HEADER
-                        </div>
-                        <div class="page">
-                            <h1>MI REPORTE</h1>
-                            <p>personalizado</p>
-                            <!--DATOS DE LA PROFORMA-->
-                            <span t-field="o.name"/>
-                            <span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy"}'/>
+                        <div class="page" style="font-size: 12px !important;">
                             <!--DATOS DEL ASESOR-->
-                            <!--
-                            <span t-field="o.user_id.partner_id.name"/>
-                            <span t-field="o.user_id.partner_id.email"/>
-                            <span t-field="o.user_id.partner_id.phone"/>
-                            <span t-field="o.user_id.partner_id.mobile"/>
-                            -->
-                            <div style="border: 1px solid black;padding:5px;">
-                                <div class="row">
-                                    <span>INFORMACION DEL EJECUTIVO DE VENTAS</span>
+                            <div style="border: 1px solid black;padding:15px;margin:10px;">
+                                <div class="row" style="padding:10px">
+                                    <span><b>INFORMACION DEL EJECUTIVO DE VENTAS</b></span>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="padding:5px">
                                     <span>ASESOR:</span>
                                     <span t-field="o.user_id.partner_id.name"/>
-                                    <span>EMAIL:</span>
+                                    <span style="padding-left:20px">EMAIL:</span>
                                     <span t-field="o.user_id.partner_id.email"/>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="padding:5px">
                                     <span>TELEFONO:</span>
                                     <span t-field="o.user_id.partner_id.phone"/>
-                                    <span>CELULAR:</span>
+                                    <span style="padding-left:20px">CELULAR:</span>
                                     <span t-field="o.user_id.partner_id.mobile"/>
                                 </div>
                             </div>
                             <!--DATOS DEL CLIENTE-->
-                            <!--
-                            <span t-field="o.partner_id.name"/>
-                            <span t-field="o.partner_id.vat"/>
-                            <span t-field="o.partner_id.l10n_latam_identification_type_id" />
-                            <span t-field="o.partner_id.email"/>
-                            <span t-field="o.partner_id.phone"/>
-                            <span t-field="o.partner_id.mobile"/>
-                            -->
-                            <div style="border: 1px solid black;padding:5px;">
-                                <div class="row">
-                                    <span>INFORMACION DEL CLIENTE</span>
+                            <div style="border: 1px solid black;padding:15px;margin:10px;">
+                                <div class="row" style="padding:10px">
+                                    <span><b>INFORMACION DEL CLIENTE</b></span>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="padding:5px">
                                     <span>SEÑOR(A):</span>
                                     <span t-field="o.partner_id.name"/>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="padding:5px">
                                     <span>EMAIL:</span>
                                     <span t-field="o.partner_id.email"/>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="padding:5px">
                                     <span>Nº DOC:</span>
+                                    <span t-field="o.partner_id.l10n_latam_identification_type_id" />
                                     <span t-field="o.partner_id.vat"/>
-                                    <span>TELEFONOS:</span>
+                                    <span style="padding-left:20px">TELEFONOS:</span>
                                     <span t-field="o.partner_id.phone"/>
                                     <span t-field="o.partner_id.mobile"/>
                                 </div>
@@ -90,6 +96,11 @@
                                     <t t-foreach="o.order_line" t-as="line">
                                         <t t-set="prd" t-value="line.product_id"/>
                                         <t t-set="total_area" t-value="prd.covered_area + prd.free_area"/>
+                                        <!--
+                                        <tr>
+                                            <td colspan="6">CARACTERISTICAS UNIDADES INMOBILIARIAS</td>
+                                        </tr>
+                                        -->
                                         <tr>
                                             <td><span t-field="line.name"/></td>
                                             <td><span t-field="prd.floor_number"/></td>
@@ -101,30 +112,72 @@
                                         </tr>
                                     </t>
                                 </tbody>
-                                </table>
-                            <!--
-                            <div class="row">
-                                <div class="col-xs-3">
-                                xxxx
-                                </div>
-                            </div>
-                            <div class="row zero_min_height">
-                                <div class="col-xs-12">
-                                    <div style="border-bottom: 1px solid black;">xxxx</div>
-                                </div>
-                            </div>
-                            -->
-                            <div class="row">
-                                <div class="col-xs-3" style="border-top: 1px solid black;">
-                                    <span t-field="o.partner_id.name"/>
-                                </div>
-                                <div class="col-xs-3" style="border-top: 1px solid black;">
-                                    <span t-field="o.user_id.partner_id.name"/>
-                                </div>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="6" align="right">SUBTOTAL:</td>
+                                        <td>XXXX</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" align="right">DESCUENTO:</td>
+                                        <td>YYYYY</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" align="right">PRECIO TOTAL CON DESCUENTO:</td>
+                                        <td>ZZZZZ</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <!-- TERMINOS Y CONDICIONES -->
+                            <div style="font-size: 10px !important;">
+                                <ul>
+                                    <li>
+                                    La presente proforma es solo informa va y No significa separación de los inmuebles mencionados en la misma a favor del cliente ni una oferta de términos.
+                                    </li>
+                                    <li>
+                                    Precios y Stock sujetos a variación según disponibilidad.
+                                    </li>
+                                    <li>
+                                    Si decide solicitar crédito con otra en dad bancaria, tendrá que asumir el costo de la carta fianza y las implicancias de estas.
+                                    </li>
+                                    <li>
+                                    Los datos personales que entregue a <b>ABRIL GRUPO INMOBILIARIO</b>, serán almacenados en el banco de datos denominado "prospectos" de tularidad <b>SOCIAL TREE</b>.
+                                    </li>
+                                    <li>
+                                    El tratamiento que realizará <b>SOCIAL TREE</b>, consiste en conservar, registrar, organizar, almacenar, consultar, extraer y u lizar mis datos personales para la realización de prospección comercial y envío de publicidad para ofrecer sus proyectos inmobiliarios.
+                                    </li>
+                                    <li>
+                                    El tular de los datos personales puede ejercer su derecho de acceso, rec ficación, cancelación y oposición en los términos dispuestos en la Ley N° 29733 - Ley de Protección de Datos Personales y Su Reglamento aprobado por D.S. N° 003-2013-JUS, debiendo comunicar a <b>ABRIL GRUPO INMOBILIARIO</b> su
+decisión por cualquier medio.
+                                    </li>
+                                    <li>
+                                    De acuerdo con lo indicado, declaro que otorgo mi consen miento para que <b>ABRIL GRUPO INMOBILIARIO</b> u lice mis datos personales de acuerdo a lo indicado en el presente documento.
+                                    </li>
+                                    <li>
+                                    Por otro lado autorizo que mis datos personales de contacto sean transferidos a <b>ABRIL GRUPO INMOBILIARIO</b> para recibir publicidad relacionada a los proyectos inmobiliarios que está ofrece.
+                                    </li>
+                                    <li>
+                                    (*) Sujeto a culminación de preventa y emisión de licencia de construcción fecha definitiva: 20 meses después de iniciada la construcción.
+                                    </li>
+                                    <li>
+                                    <b>EL DESCUENTO REFERIDO EN LA PRESENTE PROFORMA APLICA PARA LA MODALIDAD DE _______________________________________</b>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <div class="footer">
-                            <small>Mi footer</small>
+                            <!--<small>Mi footer</small>-->
+                            <!-- FIRMAS -->
+                            <div class="row">
+                                <div style="width:150px"></div>
+                                <div class="col-xs-3" style="border-top: 1px solid black;width:300px;text-align:center">
+                                    <span t-field="o.partner_id.name"/>
+                                </div>
+                                <div style="width:100px"></div>
+                                <div class="col-xs-3" style="border-top: 1px solid black;width:300px;text-align:center">
+                                    <span t-field="o.user_id.partner_id.name"/>
+                                </div>
+                                <div style="width:150px"></div>
+                            </div>
                         </div>
                     </t>
                 </t>
