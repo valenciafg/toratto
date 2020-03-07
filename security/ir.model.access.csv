@@ -5,3 +5,4 @@ access_project_type_toratto,project_type.toratto,model_project_type_toratto,,1,1
 access_district_toratto,district.toratto,model_district_toratto,,1,1,1,1
 access_unit_toratto,unit.toratto,model_unit_toratto,,1,1,1,1
 access_unit_type_toratto,unit_type.toratto,model_unit_type_toratto,,1,1,1,1
+access_plans_toratto,plans.toratto,model_plans_toratto,,1,1,1,1

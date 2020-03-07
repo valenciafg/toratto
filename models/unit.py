@@ -43,6 +43,10 @@ class Unit(models.Model):
     funder_type_id = fields.Many2one('funder.type.toratto',
         ondelete='set null', string="Tipo de Financiamiento", index=True)
 
+    parent_id = fields.Many2one('res.partner',
+        ondelete='set null', string="Cliente Interesado", index=True)
+
+
     #   CONTRUCTION
     occupied_area = fields.Float(
         string='Area Ocupada m2',

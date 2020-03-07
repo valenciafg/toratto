@@ -12,6 +12,7 @@
                         <group colspan="4" col="4">
                             <field name="name"/>
                             <field name="logo"/>
+                            <field name="logo2"/>
                             <field name="code"/>
                             <field name="currency_id"/>
                         </group>
@@ -96,7 +97,7 @@
                                         <li>Tipo: <field name="project_type_id"/></li>
                                         <li>Distrito: <field name="district_id"/></li>
                                         <li>Direccion: <field name="address"/></li>
-                                        <li>Cant. Unidades: <field name="number_of_unit"/></li>
+                                        <li>Cant.Unidades: <field name="number_of_unit"/></li>
                                     </ul>
                                 </div>
                             </div>

@@ -23,6 +23,7 @@ class ResPartner(models.Model):
         ondelete='set null', string="Moneda", index=True)
     price = fields.Monetary(string="Precio de Venta")
     discount = fields.Monetary(string="Descuento Especial")
+    amount_of_separation = fields.Monetary(string="Monto de Separacion")
     m2_price = fields.Monetary(string="Precio M2")
     sale_date = fields.Date(
         string='Fecha de venta',
@@ -36,6 +37,9 @@ class ResPartner(models.Model):
     )
     funder_type_id = fields.Many2one('funder.type.toratto',
         ondelete='set null', string="Tipo de Financiamiento", index=True)
+    parent_id = fields.Many2one('res.partner',
+        ondelete='set null', string="Cliente Interesado", index=True)
+
     #   CONTRUCTION
     occupied_area = fields.Float(
         string='Area Ocupada m2',

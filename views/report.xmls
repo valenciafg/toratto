@@ -15,7 +15,7 @@
                     <t t-foreach="docs" t-as="o">
                         <div class="row">
                             <div style="width:300px;text-align:left;">
-                                <img t-attf-src="data:image/*;base64,{{ o.company_id.logo }}" style="align:left; width:150px;height:70px;"/>
+                                <img t-attf-src="data:image/*;base64,{{ o.company_id.logo }}" style="align:left; width:85px;height:85px;"/>
                             </div>
                             <div style="width:300px;text-align:center">
                                 <ul style="list-style-type:none;">
@@ -108,8 +108,8 @@
                                             <td><span t-field="prd.covered_area"/></td>
                                             <td><span t-field="prd.free_area"/></td>
                                             <td><span t-esc="total_area"/></td>
+                                            <td><span t-field="prd.price"/></td>
                                             <!-- td><span t-field="line.price_total"/></td -->
-                                            <td><span t-field="line.price_unit"/></td>
                                         </tr>
                                     </t>
                                 </tbody>
@@ -131,13 +131,13 @@
                                         <td>YYYYY</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" align="right">TOTAL A FINANCIAR:</td>
-                                        <td>www</td>
+                                        <td name="th_price_total colspan="6" align="right">TOTAL A FINANCIAR:</td>
+                                            <span t-field="line.price_total"/></td>
                                     </tr>
                                 </tfoot>
                             </table>
                             <!-- TERMINOS Y CONDICIONES -->
-                            <div style="font-size: 10px !important;">
+                            <!-- div style="font-size: 10px !important;">
                                 <ul>
                                     <li>
                                     La presente proforma es solo informa va y No significa separación de los inmuebles mencionados en la misma a favor del cliente ni una oferta de términos.
@@ -171,7 +171,7 @@ decisión por cualquier medio.
                                     <b>EL DESCUENTO REFERIDO EN LA PRESENTE PROFORMA APLICA PARA LA MODALIDAD DE _______________________________________</b>
                                     </li>
                                 </ul>
-                            </div>
+                            </div-->
                         </div>
                         <div class="footer">
                             <!--<small>Mi footer</small>-->

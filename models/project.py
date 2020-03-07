@@ -42,7 +42,8 @@ class Project(models.Model):
 
     code = fields.Char(string="Código", required=True, size=15)
     name = fields.Char(string="Nombre", required=True, size=50)
-    logo = fields.Binary(string='Logo', attachment=True)
+    logo = fields.Binary(string='Imagen Fachada', attachment=True)
+    logo2 = fields.Binary(string='Logo del Proyecto', attachment=True)
     currency_id = fields.Many2one('res.currency',
         ondelete='set null', string="Moneda", index=True)
    # building_type_id = fields.Many2one('building.type.toratto',

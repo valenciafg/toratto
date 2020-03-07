@@ -19,12 +19,14 @@
                                 <field name="st_commercial" placeholder="Estado Comercial"/>
                                 <field name="currency_id" placeholder="Moneda"/>
                                 <field name="price" placeholder="Precio de Venta"/>
+                                <field name="amount_of_separation" placeholder="Monto de Saparcion"/>
                                 <field name="discount" placeholder="Descuento Especial"/>
                                 <field name="m2_price" placeholder="Precio M2"/>
                                 <field name="sale_date" placeholder="Fecha de Venta"/>
                                 <field name="tea" placeholder="Tasa Efectiva Anual %"/>
                                 <field name="contract_modality" placeholder="Modalidad de contrato"/>
                                 <field name="funder_type_id" placeholder="Tipo de Financiamiento"/>
+                                <field name="parent_id" placeholder="Cliente Interesado"/>
                             </group>
                             <group string="Datos de construcción" name="group_unit_construction">
                                 <field name="occupied_area" placeholder="Area Ocupada m2"/>
