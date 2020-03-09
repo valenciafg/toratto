@@ -13,5 +13,6 @@ from . import district
 from . import plans
 #Acquisition
 from . import acquisition
-#
+#Sale
+from . import sale_order
 from . import product_template

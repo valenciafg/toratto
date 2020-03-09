@@ -32,7 +32,9 @@
         'views/acquisition.xml',
         'views/res_partner_view.xml',
         'views/product_template_view.xml',
+        'views/sale_order_views.xml',
         'views/report.xml',
+        'views/email_template.xml',
         'data/l10n_latam.identification.type.xml',
     ],
     # only loaded in demonstration mode
