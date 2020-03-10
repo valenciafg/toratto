@@ -6,7 +6,7 @@ class SaleOrder(models.Model):
 
     def action_toratto_quotation_email_send(self):
         print("enviando correo")
-        template_id = self.env.ref('toratto.toratto_sale_order_email_template').id
+        template_id = self.env.ref('toratto.sale_order_email_template').id
         print(template_id)
         template = self.env['mail.template'].browse(template_id)
         print(template)
