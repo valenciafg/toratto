@@ -20,6 +20,7 @@
                                 <field name="currency_id" placeholder="Moneda"/>
                                 <field name="price" placeholder="Precio de Venta"/>
                                 <field name="amount_of_separation" placeholder="Monto de Saparcion"/>
+                                <field name="initial_fee" placeholder="Cuota Inicial (%)"/>
                                 <field name="discount" placeholder="Descuento Especial"/>
                                 <field name="m2_price" placeholder="Precio M2"/>
                                 <field name="sale_date" placeholder="Fecha de Venta"/>
@@ -45,7 +46,62 @@
                 </xpath>
             </field>
         </record>
-        </data>
+
+        <record model="ir.ui.view" id="toratto_product_template_kanban_view">
+            <field name="name">Toratto Product Template Kanban</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban//templates" position="inside">
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('product.template', 'image_128', record.id.raw_value)" alt="Product" class="o_image_64_contain"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title">
+                                    <field name="name"/>
+                                    <small t-if="record.default_code.value">[<field name="default_code"/>]</small>
+                                </strong>
+                                <div t-if="record.product_variant_count.value &gt; 1" groups="product.group_product_variant">
+                                    <strong>
+                                        <t t-esc="record.product_variant_count.value"/> Variants
+                                    </strong>
+                                </div>
+                                <div name="tags"/>
+                                <ul>
+                                    <li>Precio: <field name="lst_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/></li>
+                                    <li t-if="record.st_commercial.raw_value == 'DISPONIBLE'">Estado Comercial: 
+                                        <div name="state" class="o_field_widget badge badge-success">
+                                            <field name="st_commercial"/>
+                                        </div>
+                                    </li>
+                                    <li t-if="record.st_commercial.raw_value == 'VENDIDO'">Estado Comercial: 
+                                        <div name="state" class="o_field_widget badge badge-danger">
+                                            <field name="st_commercial"/>
+                                        </div>
+                                    </li>
+                                    <li t-if="record.st_commercial.raw_value == 'SEPARADO'">Estado Comercial: 
+                                        <div name="state" class="o_field_widget badge badge-warning">
+                                            <field name="st_commercial"/>
+                                        </div>
+                                    </li>
+                                    <li>Cliente Interesado: <field name="parent_id"/></li>
+                                </ul>
+                                <div name="tags"/>
+                            </div>
+                            <div class="o_kanban_record_bottom">                                
+                                <div class="oe_kanban_bottom_right">
+                                    <!--<field name="st_commercial" widget="label_selection" options="{'classes': {'DISPONIBLE': 'success', 'VENDIDO': 'danger', 'SEPARADO': 'warning'}}"/>-->
+                                    <!--<field name="st_commercial" widget="label_selection" options="{'classes': {'draft': 'default', 'cancel': 'default', 'done': 'success'}}"/>-->
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </xpath>
+            </field>
+        </record>
+    </data>
 
 </odoo>
 

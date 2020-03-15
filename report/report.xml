@@ -90,11 +90,27 @@
                                             <span t-field="o.partner_id.mobile"/>
                                         </td>
                                     </tr>
+                                    <t t-if="o.client_order_ref">
+                                    <tr>
+                                        <td><b><span>REFERIDO:</span></b></td>
+                                        <td>
+                                            <span t-field="o.client_order_ref.l10n_latam_identification_type_id" />
+                                            <span t-field="o.client_order_ref.vat"/>
+                                            <span t-field="o.client_order_ref.name"/>
+                                        </td>
+                                        <td><b><span>REF. TELEFONOS:</span></b></td>
+                                        <td>
+                                            <span t-field="o.client_order_ref.phone"/>
+                                            <span t-field="o.client_order_ref.mobile"/>
+                                        </td>
+                                    </tr>
+                                    </t>
                                 </tbody>
                             </table>
                             <t t-set="sum_subtotal" t-value="0"/>
                             <t t-set="sum_separation_mount" t-value="0"/>
                             <t t-set="sum_discount_mount" t-value="0"/>
+                            <t t-set="sum_initial_fee" t-value="0"/>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -109,9 +125,11 @@
                                 </thead>
                                 <tbody class="table-striped">
                                     <t t-foreach="o.order_line" t-as="line">
+                                        <t t-set="currency_type_symbol" t-value="line.currency_id"/>
                                         <t t-set="prd" t-value="line.product_id"/>
                                         <t t-set="total_area" t-value="prd.covered_area + prd.free_area"/>
                                         <t t-set="sum_subtotal" t-value="sum_subtotal + line.price_unit"/>
+                                        <t t-set="sum_initial_fee" t-value="sum_initial_fee + ((line.price_unit * line.initial_fee)/100)"/>
                                         <t t-set="sum_separation_mount" t-value="sum_separation_mount + prd.amount_of_separation"/>
                                         <t t-set="sum_discount_mount" t-value="sum_discount_mount + prd.discount"/>
                                         <!--
@@ -127,36 +145,36 @@
                                             <td><span t-field="prd.free_area"/></td>
                                             <td><span t-esc="total_area"/></td>
                                             <!-- td><span t-field="line.price_total"/></td -->
-                                            <td><span t-field="line.price_unit"/></td>
+                                            <td><span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": line.currency_id}'/></td>
                                         </tr>
                                     </t>
                                 </tbody>
-                                <t t-set="total_mount" t-value="sum_subtotal - sum_separation_mount - 0 - sum_discount_mount"/>
-                                    <t t-set="prd_project_name" t-value=""/>
-                                    <t t-foreach="o.order_line" t-as="line">
-                                        <t t-set="prd" t-value="line.product_id"/>
-                                        <t t-set="prd_project_name" t-value="prd.proyect_id.name"/>
-                                    </t>
+                                <t t-set="total_mount" t-value="sum_subtotal - sum_separation_mount - sum_initial_fee - sum_discount_mount"/>
+                                <t t-set="prd_project_name" t-value=""/>
+                                <t t-foreach="o.order_line" t-as="line">
+                                    <t t-set="prd" t-value="line.product_id"/>
+                                    <t t-set="prd_project_name" t-value="prd.proyect_id.name"/>
+                                </t>
                                 <tfoot>
                                     <tr>
                                         <td colspan="6" align="right">SUBTOTAL:</td>
-                                        <td><span t-esc="sum_subtotal"/></td>
+                                        <td><span t-esc="sum_subtotal" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
                                     </tr>
                                     <tr>
                                         <td colspan="6" align="right">SEPARACION:</td>
-                                        <td><span t-esc="sum_separation_mount"/></td>
+                                        <td><span t-esc="sum_separation_mount" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
                                     </tr>
                                     <tr>
                                         <td colspan="6" align="right">CUOTA INICIAL:</td>
-                                        <td>0</td>
+                                        <td><span t-esc="sum_initial_fee" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
                                     </tr>
                                     <tr>
                                         <td colspan="6" align="right">DESCUENTO:</td>
-                                        <td><span t-esc="sum_discount_mount"/></td>
+                                        <td><span t-esc="sum_discount_mount" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
                                     </tr>
                                     <tr>
                                         <td colspan="6" align="right">TOTAL A FINANCIAR:</td>
-                                        <td><span t-esc="total_mount"/></td>
+                                        <td><span t-esc="total_mount" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
                                     </tr>
                                 </tfoot>
                             </table>
