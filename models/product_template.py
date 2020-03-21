@@ -22,14 +22,14 @@ class ResPartner(models.Model):
     currency_id = fields.Many2one('res.currency',
         ondelete='set null', string="Moneda", index=True)
     price = fields.Monetary(string="Precio de Venta")
-    discount = fields.Monetary(string="Descuento Especial")
-    amount_of_separation = fields.Monetary(string="Monto de Separacion")
-    m2_price = fields.Monetary(string="Precio M2")
+    discount = fields.Float(string="Descuento (%)", digits='Descuento', default=0.0)
+    amount_of_separation = fields.Float(string="Monto de Separacion", digits='Monto de Separacion', default=0.0)
+    m2_price = fields.Float(string="Precio M2", default=0.0)
     sale_date = fields.Date(
         string='Fecha de venta',
     )
     tea = fields.Char(
-        string='Tasa Efectiva Anual %', size=50
+        string='Tasa Efectiva Anual %', default=0.0
     )
     contract_modality = fields.Selection(
         string='Modalidad de contrato',
