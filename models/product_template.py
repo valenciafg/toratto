@@ -4,6 +4,11 @@ from odoo import models, fields
 class ResPartner(models.Model):
     _name = 'product.template'
     _inherit = 'product.template'
+    ESTADO_COMERCIAL = [
+        ('DISPONIBLE', 'Disponible'),
+        ('VENDIDO', 'Vendido'),
+        ('SEPARADO', 'Separado')
+    ]
     #required=True,
     code = fields.Char(string="Código", size=15)
     unit_type = fields.Many2one('unit.type.toratto',
@@ -16,15 +21,18 @@ class ResPartner(models.Model):
     )
     #   COMERCIAL
     st_commercial = fields.Selection(
+        ESTADO_COMERCIAL,
         string='Estado Comercial',
-        selection=[('DISPONIBLE', 'Disponible'), ('VENDIDO', 'Vendido'), ('SEPARADO', 'Separado')]
+        index=True,
+        default='DISPONIBLE',
     )
     currency_id = fields.Many2one('res.currency',
         ondelete='set null', string="Moneda", index=True)
     price = fields.Monetary(string="Precio de Venta")
-    discount = fields.Float(string="Descuento (%)", digits='Descuento', default=0.0)
-    amount_of_separation = fields.Float(string="Monto de Separacion", digits='Monto de Separacion', default=0.0)
-    m2_price = fields.Float(string="Precio M2", default=0.0)
+    discount = fields.Monetary(string="Descuento Especial")
+    amount_of_separation = fields.Monetary(string="Monto de Separacion")
+    initial_fee = fields.Float(string='Cuota Inicial (%)', default=10.0)
+    m2_price = fields.Monetary(string="Precio M2")
     sale_date = fields.Date(
         string='Fecha de venta',
     )
