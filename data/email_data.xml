@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="email_template_unit_sale" model="mail.template">
+            <field name="name">Presupuesto - Toratto</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="subject">Cotizacion (Nro. ${object.name or 'n/a' })</field>
+            <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+            <!--<field name="partner_to">${object.partner_id.id}</field>-->
+            <field name="email_to">${object.partner_id.email}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Estimado,
+                        <br/><br/>
+                        Su cotización <strong>${object.name}</strong> está disponible.
+                        <br/><br/>
+                        No dude en contactarnos si tiene alguna pregunta.
+                        <br/><br/>
+                        -
+                        <br/>
+                        ${object.user_id.email_formatted} - ${object.company_id.name}
+                    </p>
+                </div>
+            </field>
+            <!--${object.partner_id.id}-->
+            <field name="report_template" ref="toratto.report_custom"/>
+            <field name="report_name">${(object.name or '').replace('/','_')}</field>
+            <!--<field name="report_name">${(object.name or '').replace('/','_')}</field>-->
+            <!--<field name="lang">${object.partner_id.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>-->
+        </record>
+    </data>
+</odoo>

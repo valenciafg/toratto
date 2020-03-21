@@ -12,11 +12,9 @@
                     class="btn-primary"
                 />
             </xpath>
-            <!--
             <xpath expr="//notebook//page[@name='order_lines']//field[@name='order_line']//tree//field[@name='discount']" position="after">
                 <field name="initial_fee" string="C.Inicial.%"/>
             </xpath>
-            -->
         </field>
     </record>
 </odoo>

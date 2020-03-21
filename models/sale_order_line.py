@@ -5,7 +5,7 @@ class SaleOrderLine(models.Model):
     _name = "sale.order.line"
     _inherit = "sale.order.line"
 
-    #initial_fee = fields.Float(string='C.Inicial (%)', default=10.0)
+    initial_fee = fields.Float(string='C.Inicial (%)', default=10.0)
     """
     @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id', 'initial_fee')
     def _compute_amount(self):

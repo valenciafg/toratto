@@ -34,7 +34,7 @@
         'views/product_template_view.xml',
         'views/sale_order_views.xml',
         'report/report.xml',
-        'views/email_template.xml',
+        'data/email_data.xml',
         'data/l10n_latam.identification.type.xml',
     ],
     # only loaded in demonstration mode
