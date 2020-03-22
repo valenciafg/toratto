@@ -111,6 +111,7 @@
                             <t t-set="sum_separation_mount" t-value="0"/>
                             <t t-set="sum_discount_mount" t-value="0"/>
                             <t t-set="sum_initial_fee" t-value="0"/>
+                            <t t-set="sum_taxes" t-value="0"/>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -130,8 +131,9 @@
                                         <t t-set="total_area" t-value="prd.covered_area + prd.free_area"/>
                                         <t t-set="sum_subtotal" t-value="sum_subtotal + line.price_unit"/>
                                         <t t-set="sum_initial_fee" t-value="sum_initial_fee + ((line.price_unit * line.initial_fee)/100)"/>
-                                        <t t-set="sum_separation_mount" t-value="sum_separation_mount + prd.amount_of_separation"/>
+                                        <t t-set="sum_separation_mount" t-value="sum_separation_mount + line.amount_of_separation"/>
                                         <t t-set="sum_discount_mount" t-value="sum_discount_mount + prd.discount"/>
+                                        <t t-set="sum_taxes" t-value="sum_taxes + line.price_tax"/>
                                         <!--
                                         <tr>
                                             <td colspan="6">CARACTERISTICAS UNIDADES INMOBILIARIAS</td>
@@ -149,7 +151,7 @@
                                         </tr>
                                     </t>
                                 </tbody>
-                                <t t-set="total_mount" t-value="sum_subtotal - sum_separation_mount - sum_initial_fee - sum_discount_mount"/>
+                                <t t-set="total_mount" t-value="(sum_subtotal - sum_separation_mount - sum_initial_fee - sum_discount_mount) + sum_taxes"/>
                                 <t t-set="prd_project_name" t-value=""/>
                                 <t t-foreach="o.order_line" t-as="line">
                                     <t t-set="prd" t-value="line.product_id"/>
@@ -171,6 +173,10 @@
                                     <tr>
                                         <td colspan="6" align="right">DESCUENTO:</td>
                                         <td><span t-esc="sum_discount_mount" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" align="right">IMPUESTO:</td>
+                                        <td><span t-esc="sum_taxes" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
                                     </tr>
                                     <tr>
                                         <td colspan="6" align="right">TOTAL A FINANCIAR:</td>

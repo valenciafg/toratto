@@ -19,8 +19,8 @@
                                 <field name="st_commercial" placeholder="Estado Comercial"/>
                                 <field name="currency_id" placeholder="Moneda"/>
                                 <field name="price" placeholder="Precio de Venta"/>
-                                <field name="amount_of_separation" placeholder="Monto de Saparcion"/>
-                                <field name="initial_fee" placeholder="Cuota Inicial (%)"/>
+                                <!--<field name="amount_of_separation" placeholder="Monto de Saparcion"/>-->
+                                <!--<field name="initial_fee" placeholder="Cuota Inicial (%)"/>-->
                                 <field name="discount" placeholder="Descuento Especial"/>
                                 <field name="m2_price" placeholder="Precio M2"/>
                                 <field name="sale_date" placeholder="Fecha de Venta"/>

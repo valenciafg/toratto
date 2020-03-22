@@ -30,8 +30,8 @@ class ResPartner(models.Model):
         ondelete='set null', string="Moneda", index=True)
     price = fields.Monetary(string="Precio de Venta")
     discount = fields.Monetary(string="Descuento Especial")
-    amount_of_separation = fields.Monetary(string="Monto de Separacion")
-    initial_fee = fields.Float(string='Cuota Inicial (%)', default=10.0)
+    #amount_of_separation = fields.Monetary(string="Monto de Separacion")
+    #initial_fee = fields.Float(string='Cuota Inicial (%)', default=10.0)
     m2_price = fields.Monetary(string="Precio M2")
     sale_date = fields.Date(
         string='Fecha de venta',
