@@ -97,6 +97,7 @@ class Project(models.Model):
     limit_discount_seving_six_month = fields.Char(string='Limite Descuanto Ahorro 6 Meses')
     limit_discount_seving_nine_month = fields.Char(string='Limite Descuanto Ahorro 9 Meses')
     licence_construction = fields.Char(string='Licencia de Construcción')
+    electronic_game = fields.Char(string='Partida Electronica del Proyecto')
     developer = fields.Many2one('res.partner',
         ondelete='set null', string="Promotor Inmobiliario", index=True)
     funders_id = fields.Many2one('res.partner.bank', string="N° Cuenta Bancaria Asociada")
