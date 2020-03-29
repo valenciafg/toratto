@@ -27,9 +27,13 @@
                                 </ul>
                             </div>
                             <div style="width:300px;text-align:right;">
+                                <t t-set="index" t-value="0" />
                                 <t t-foreach="o.order_line" t-as="line">
-                                    <t t-set="prd" t-value="line.product_id"/> 
-                                    <img t-attf-src="data:image/*;base64,{{ prd.proyect_id.logo2 }}" style="align:left; width:85px;height:85px;"/>
+                                    <t t-if="index == 0">
+                                        <t t-set="prd" t-value="line.product_id"/> 
+                                        <img t-attf-src="data:image/*;base64,{{ prd.proyect_id.logo2 }}" style="align:left; width:85px;height:85px;"/>
+                                    </t>
+                                    <t t-set="index" t-value="index + 1" />
                                 </t>
                             </div>
                         </div>
@@ -223,21 +227,23 @@ decisión por cualquier medio.
                             </div>
                             </t>
                         </div>
-                        <div class="footer">
-                            <!--<small>Mi footer</small>-->
-                            <!-- FIRMAS -->
-                            <div class="row">
-                                <div style="width:150px"></div>
-                                <div class="col-xs-3" style="border-top: 1px solid black;width:300px;text-align:center">
-                                    <span t-field="o.partner_id.name"/>
-                                </div>
-                                <div style="width:100px"></div>
-                                <div class="col-xs-3" style="border-top: 1px solid black;width:300px;text-align:center">
-                                    <span t-field="o.user_id.partner_id.name"/>
-                                </div>
-                                <div style="width:150px"></div>
+                        <!-- FIRMAS -->
+                        <br/><br/><br/>
+                        <div class="row">
+                            <div style="width:150px"></div>
+                            <div class="col-xs-3" style="border-top: 1px solid black;width:300px;text-align:center">
+                                <span t-field="o.partner_id.name"/>
                             </div>
+                            <div style="width:100px"></div>
+                            <div class="col-xs-3" style="border-top: 1px solid black;width:300px;text-align:center">
+                                <span t-field="o.user_id.partner_id.name"/>
+                            </div>
+                            <div style="width:150px"></div>
                         </div>
+                        <!--
+                        <div class="footer">
+                        </div>
+                        -->
                     </t>
                 </t>
             </t>
