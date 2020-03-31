@@ -244,6 +244,13 @@ decisión por cualquier medio.
                         <div class="footer">
                         </div>
                         -->
+                        
+                        <t t-foreach="o.order_line" t-as="line">
+                            <p style="page-break-after:always">
+                                <t t-set="prd" t-value="line.product_id"/> 
+                                <img t-attf-src="data:image/*;base64,{{ prd.plans.logo }}" style="align:center; max-width:900px;max-height:1366px;"/>
+                            </p>
+                        </t>
                     </t>
                 </t>
             </t>
