@@ -68,6 +68,22 @@ def get_data_doc_number(tipo_doc, numero_doc, format='json'):
 class ResPartner(models.Model):
     _name = 'res.partner'
     _inherit = 'res.partner'
+    ESTADO_CIVIL = [
+        ('SOLTERO(A)', 'Soltero(A)'),
+        ('CASADO(A)', 'Casado(A)'),
+        ('VIUDO(A)', 'Viudo(A)'),
+        ('SOLTERO(A) CON UNION DE HECHO REGISTRADA EN RRPP', 'Soltero(A) Con Union de Hecho Registrado en Rrpp')
+    ]
+    _columns = {
+        'nacionality': fields.Char('Nacionalidad', size=64),
+        'birth_date': fields.Date('Fecha de Nacimiento'),
+        'gender': fields.Selection('Genero', [('MASCULINO', 'Masculino'), ('FEMENINO', 'Femenino'),]),
+        'firma': fields.Binary('Firma', attachment=True)
+    }
+    GENERO = [
+        ('MASCULINO', 'Masculino'),
+        ('Femenino', 'Femenino')
+    ]
 
     #registration_name = fields.Char('Registration Name', size=128)
     #catalog_06_id = fields.Many2one('einvoice.catalog.06','Tipo Doc.', index=True)
@@ -118,3 +134,22 @@ class ResPartner(models.Model):
                 self.name = d['nombre']
         return True
 
+    email = fields.Char(required=True)
+    email_formatted = fields.Char(
+        'Formatted Email', compute='_compute_email_formatted',
+        help='Format email address "Name <email@domain>"', required=True)
+    mobile = fields.Char(required=True)
+    st_civil = fields.Selection(
+        ESTADO_CIVIL,
+        string='Estado Civil',
+        index=True,
+        default='SOLTERO(A)',
+    )
+    nacionality = fields.Char('Nacionalidad')
+    birth_date = fields.Date('Fecha de Nacimiento')
+    gender = fields.Selection(
+        GENERO,
+        string='Genero',
+        index=True,
+    )
+    firma = fields.Binary(string='Firma', attachment=True)

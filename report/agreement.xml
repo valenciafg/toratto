@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<odoo>
+    <report
+            id="agreement_minuta_las"
+            model="sale.order"
+            string="Imprimir Minuta (Las)"
+            name="toratto.report_agreement_minuta_las"
+            report_type="qweb-pdf"/>
+
+    <template id="report_agreement_minuta_las">
+        <xpath expr="//div[@class='header']" position="replace">
+            <div class="header">
+                <t t-foreach="docs" t-as="o">
+                   <div class="row">
+                       <div style="width:300px;text-align:left;">
+                           <img t-attf-src="data:image/*;base64,{{ o.company_id.logo }}" style="align:left; width:280px;height:85px;"/>
+                       </div>
+                       <div style="width:850px;text-align:right;">
+                           <t t-set="index" t-value="0" />
+                           <t t-foreach="o.order_line" t-as="line">
+                              <t t-if="index == 0">
+                                 <t t-set="prd" t-value="line.product_id"/>
+                                 <img t-attf-src="data:image/*;base64,{{ prd.proyect_id.logo2 }}" style="align:left; width:85px;height:85px;"/>
+                              </t>
+                              <t t-set="index" t-value="index + 1" />
+                           </t>
+                       </div>
+                   </div>
+                </t>
+            </div>
+        </xpath>
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                   <div class="page">
+                       <t t-set="prd_project_name" t-value=""/>
+
+                       <t t-foreach="o.order_line" t-as="line">
+                       <t t-set="prd" t-value="line.product_id"/>
+                       <t t-set="currency_type_symbol" t-value="line.currency_id"/>
+                       <t t-set="prd_project_name" t-value="prd.proyect_id.name"/>
+                       </t>
+                       <b><h4 align="center">COMPRA VENTA DE INMUEBLE FUTURO</h4></b><br/>
+                       <b><h4 align="center">PROYECTO RESIDENCIAL <t t-esc="prd_project_name"/></h4></b>
+                   </div>
+                    <!-- div class="footer">
+                    </div -->
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+

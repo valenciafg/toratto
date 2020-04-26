@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="agreement_form_view" model="ir.ui.view">
+        <field name="name">agreement.toratto.form</field>
+        <field name="model">agreement.toratto</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                   <group string="Generales" colspan="4">
+                       <group colspan="4" col="4">
+                            <field name="name"/>
+                            <field name="contact_1"/>
+                            <field name="contact_2"/>
+                            <field name="contact_3"/>
+                            <field name="contact_4"/>
+                            <field name="order_line"/>
+                        </group>
+                    </group>
+                    <!-- group string="Comercial" colspan="4">
+                        <group colspan="4" col="4">
+                            <field name="currency_id"/>
+                            <field name="price"/>
+                            <field name="tea"/>
+                            <field name="discount"/>
+                            <field name="m2_price"/>
+                            <field name="st_commercial"/>
+                            <field name="sale_date"/>
+                            <field name="contract_modality"/>
+                            <field name="funder_type_id"/>
+                        </group>
+                    </group>
+                    <group string="Datos de construcción" colspan="4">
+                        <group colspan="4" col="4">
+                            <field name="covered_area"/>
+                            <field name="free_area"/>
+                            <field name="occupied_area"/>
+                        </group>
+                    </group>
+                    <group string="Distribución" colspan="4">
+                        <group colspan="4" col="4">
+                            <field name="bedroom_number"/>
+                            <field name="bathroom_number"/>
+                            <field name="building_view"/>
+                            <field name="service_room"/>
+                            <field name="plans"/>
+                        </group>
+                    </group -->
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- TREE VIEW -->
+    <record id="agreement_tree_view" model="ir.ui.view">
+        <field name="name">agreement.toratto.tree</field>
+        <field name="model">agreement.toratto</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <!-- ACTION -->
+    <record id="action_agreement" model="ir.actions.act_window">
+        <field name="name">Minutas</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agreement.toratto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear Nueva Minuta
+            </p>
+        </field>
+    </record>
+    <!-- MAIN MENU -->
+    <menuitem id="contract_main_menu" name="Contratos" parent="toratto_root"/>
+    <!-- SINGLE MENU ITEMS -->
+    <menuitem id="contract_menu" name="Minutas" parent="contract_main_menu" action="action_agreement" sequence="0"/>
+
+</odoo>

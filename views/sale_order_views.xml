@@ -15,6 +15,28 @@
             <xpath expr="//notebook//page[@name='order_lines']//field[@name='order_line']//tree//field[@name='discount']" position="after">
                 <field name="initial_fee" string="C.Inicial.%"/>
                 <field name="amount_of_separation" string="Monto Sep."/>
+                <field name="discount2" string="Descuento"/>
+            </xpath>
+            <xpath expr="//notebook//page[@name='order_lines']" position="after">
+                <page string="Cronograma de Pagos" name="payment_schedule">
+                    <field name="sale_order_option2_ids" mode="tree,form">
+                        <form string="Cronograma de Pagos">
+                            <group>
+                                <field name="product_id"/>
+                                <field name="description" string="Descripcion"/>
+                            </group>
+                        </form>
+                        <tree string="Sales Quotation Template Lines" editable="bottom">
+                            <control>
+                                <create name="add_product_control" string="Agregar Cronograma"/>
+                            </control>
+                            <field name="sequence" widget="handle"/>
+                            <field name="product_id"/>
+                            <field name="description" string="Descripcion"/>
+                            <button name="button_add_to_order" class="oe_link" title="Add to order lines" type="object"/>
+                        </tree>
+                    </field>
+                </page>
             </xpath>
         </field>
     </record>

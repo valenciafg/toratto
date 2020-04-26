@@ -6,3 +6,7 @@ access_district_toratto,district.toratto,model_district_toratto,,1,1,1,1
 access_unit_toratto,unit.toratto,model_unit_toratto,,1,1,1,1
 access_unit_type_toratto,unit_type.toratto,model_unit_type_toratto,,1,1,1,1
 access_plans_toratto,plans.toratto,model_plans_toratto,,1,1,1,1
+access_funder_type_toratto,funder_type.toratto,model_funder_type_toratto,,1,1,1,1
+access_sale_order_option2,sale.order.option2,model_sale_order_option2,sales_team.group_sale_salesman,1,1,1,1
+access_sale_order_option2_all,sale.order.option2,model_sale_order_option2,,1,0,0,0
+

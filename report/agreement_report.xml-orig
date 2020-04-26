@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <report
+            id="agreement_contract_document"
+            model="agreement.toratto"
+            string="Imprimir Contrato Separacion"
+            name="toratto.report_agreement_document"
+            report_type="qweb-pdf"/>
+
+    <template id="report_agreement_document">
+        <t t-name="toratto.report_agreement_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
+
+
+

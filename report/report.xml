@@ -15,15 +15,13 @@
                     <t t-foreach="docs" t-as="o">
                         <div class="row">
                             <div style="width:300px;text-align:left;">
-                                <img t-attf-src="data:image/*;base64,{{ o.company_id.logo }}" style="align:left; width:150px;height:70px;"/>
+                                <img t-attf-src="data:image/*;base64,{{ o.company_id.logo }}" style="align:left; width:195px;height:65px;"/>
                             </div>
-                            <div style="width:300px;text-align:center">
-                                <ul style="list-style-type:none;">
-                                    <li><h4>PROFORMA</h4></li>
+                            <div style="width:300px;text-align:center;">
+                                <ul style="list-style-type:none;color: #4352ac;">
+                                    <br/><br/>
+                                    <li><h4>COTIZACION</h4></li>
                                     <li><h4>Nº <span t-field="o.name"/></h4></li>
-                                    <li>
-                                        <span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
-                                    </li>
                                 </ul>
                             </div>
                             <div style="width:300px;text-align:right;">
@@ -43,26 +41,32 @@
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.external_layout">
-                        <div class="page" style="font-size: 12px !important;">
+                        <div class="page" style="font-size: 16px !important;">
                             <!--DATOS DEL ASESOR-->
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="4" scope="col"><b>INFORMACION DEL EJECUTIVO DE VENTAS</b></th>
+                                        <th colspan="4" scope="col" style="color: #63af44;padding:4px"><b>INFORMACION DEL EJECUTIVO DE VENTAS</b></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><b><span>ASESOR:</span></b></td>
-                                        <td><span t-field="o.user_id.partner_id.name"/></td>
-                                        <td><b><span>EMAIL:</span></b></td>
-                                        <td><span t-field="o.user_id.partner_id.email"/></td>
+                                       <td style="padding:4px"><b><span>FECHA DE COTIZACION:</span></b></td>
+                                       <td style="padding:4px"><span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/></td>
+                                       <td style="padding:4px"><b><span>FECHA DE EXPIRACION:</span></b></td>
+                                       <td style="padding:4px"><span t-field="o.validity_date"/></td>
                                     </tr>
                                     <tr>
-                                        <td><b><span>TELEFONO:</span></b></td>
-                                        <td><span t-field="o.user_id.partner_id.phone"/></td>
-                                        <td><b><span>CELULAR:</span></b></td>
-                                        <td><span t-field="o.user_id.partner_id.mobile"/></td>
+                                        <td style="padding:4px"><b><span>ASESOR:</span></b></td>
+                                        <td style="padding:4px"><span t-field="o.user_id.partner_id.name"/></td>
+                                        <td style="padding:4px"><b><span>EMAIL:</span></b></td>
+                                        <td style="padding:4px"><span t-field="o.user_id.partner_id.email"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:4px"><b><span>TELEFONO:</span></b></td>
+                                        <td style="padding:4px"><span t-field="o.user_id.partner_id.phone"/></td>
+                                        <td style="padding:4px"><b><span>CELULAR:</span></b></td>
+                                        <td style="padding:4px"><span t-field="o.user_id.partner_id.mobile"/></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -70,40 +74,42 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="4" scope="col"><b>INFORMACION DEL CLIENTE</b></th>
+                                        <th colspan="4" scope="col" style="padding:4px;color: #63af44"><b>INFORMACION DEL CLIENTE</b></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="2"><b><span>SEÑOR(A):</span></b></td>
-                                        <td colspan="2"><span t-field="o.partner_id.name"/></td>
+                                        <td style="padding:4px"><b><span>SEÑOR(A):</span></b></td>
+                                        <td style="padding:4px"><span t-field="o.partner_id.name"/></td>
+                                        <td style="padding:4px"><b><span>EMAIL:</span></b></td>
+                                        <td style="padding:4px"><span t-field="o.partner_id.email"/></td>
                                     </tr>
-                                    <tr>
+                                    <!-- tr>
                                         <td colspan="2"><b><span>EMAIL:</span></b></td>
                                         <td colspan="2"><span t-field="o.partner_id.email"/></td>
-                                    </tr>
+                                    </tr -->
                                     <tr>
-                                        <td><b><span>Nº DOC:</span></b></td>
-                                        <td>
+                                        <td style="padding:4px"><b><span>Nº DOC:</span></b></td>
+                                        <td style="padding:4px">
                                             <span t-field="o.partner_id.l10n_latam_identification_type_id" />
                                             <span t-field="o.partner_id.vat"/>
                                         </td>
-                                        <td><b><span>TELEFONOS:</span></b></td>
-                                        <td>
+                                        <td style="padding:4px"><b><span>TELEFONOS:</span></b></td>
+                                        <td style="padding:4px">
                                             <span t-field="o.partner_id.phone"/>
                                             <span t-field="o.partner_id.mobile"/>
                                         </td>
                                     </tr>
                                     <t t-if="o.client_order_ref">
                                     <tr>
-                                        <td><b><span>REFERIDO:</span></b></td>
-                                        <td>
+                                        <td style="padding:4px"><b><span>REFERIDO:</span></b></td>
+                                        <td style="padding:4px">
                                             <span t-field="o.client_order_ref.l10n_latam_identification_type_id" />
                                             <span t-field="o.client_order_ref.vat"/>
                                             <span t-field="o.client_order_ref.name"/>
                                         </td>
-                                        <td><b><span>REF. TELEFONOS:</span></b></td>
-                                        <td>
+                                        <td style="padding:4px"><b><span>REF. TELEFONOS:</span></b></td>
+                                        <td style="padding:4px">
                                             <span t-field="o.client_order_ref.phone"/>
                                             <span t-field="o.client_order_ref.mobile"/>
                                         </td>
@@ -119,13 +125,14 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Inmueble y Numero</th>
-                                        <th scope="col">Piso</th>
-                                        <th scope="col">Vista</th>
-                                        <th scope="col">Area Techada</th>
-                                        <th scope="col">Area no Techada</th>
-                                        <th scope="col">Area Total</th>
-                                        <th scope="col">Precio de Venta</th>
+                                        <th scope="col" style="padding:4px;color: #63af44">Inmueble y número</th>
+                                        <th scope="col" style="padding:4px;color: #63af44">Piso</th>
+                                        <th scope="col" style="padding:4px;color: #63af44">Tipo</th>
+                                        <th scope="col" style="padding:4px;color: #63af44">Vista</th>
+                                        <th scope="col" style="padding:4px;color: #63af44">Área Techada</th>
+                                        <th scope="col" style="padding:4px;color: #63af44">Área no Techada</th>
+                                        <th scope="col" style="padding:4px;color: #63af44">Área Total</th>
+                                        <th scope="col" style="padding:4px;color: #63af44">Precio de Venta</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-striped">
@@ -133,7 +140,7 @@
                                         <t t-set="currency_type_symbol" t-value="line.currency_id"/>
                                         <t t-set="prd" t-value="line.product_id"/>
                                         <t t-set="total_area" t-value="prd.covered_area + prd.free_area"/>
-                                        <t t-set="sum_subtotal" t-value="sum_subtotal + line.price_unit"/>
+                                        <t t-set="sum_subtotal" t-value="sum_subtotal + line.price_unit - line.discount2"/>
                                         <t t-set="sum_initial_fee" t-value="sum_initial_fee + ((line.price_unit * line.initial_fee)/100)"/>
                                         <t t-set="sum_separation_mount" t-value="sum_separation_mount + line.amount_of_separation"/>
                                         <t t-set="sum_discount_mount" t-value="sum_discount_mount + prd.discount"/>
@@ -144,107 +151,114 @@
                                         </tr>
                                         -->
                                         <tr>
-                                            <td><span t-field="line.name"/></td>
-                                            <td><span t-field="prd.floor_number"/></td>
-                                            <td><span t-field="prd.building_view"/></td>
-                                            <td><span t-field="prd.covered_area"/></td>
-                                            <td><span t-field="prd.free_area"/></td>
-                                            <td><span t-esc="total_area"/></td>
+                                            <td style="padding:4px"><span t-field="line.name"/></td>
+                                            <td style="padding:4px"><span t-field="prd.floor_number"/></td>
+                                            <td style="padding:4px"><span t-field="prd.unit_type"/></td>
+                                            <td style="padding:4px"><span t-field="prd.building_view"/></td>
+                                            <td style="padding:4px"><span t-field="prd.covered_area"/></td>
+                                            <td style="padding:4px"><span t-field="prd.free_area"/></td>
+                                            <td style="padding:4px"><span t-esc="total_area"/></td>
                                             <!-- td><span t-field="line.price_total"/></td -->
-                                            <td><span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": line.currency_id}'/></td>
+                                            <td style="padding:4px"><span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": line.currency_id}'/></td>
                                         </tr>
                                     </t>
                                 </tbody>
                                 <t t-set="total_mount" t-value="(sum_subtotal - sum_separation_mount - sum_initial_fee - sum_discount_mount) + sum_taxes"/>
                                 <t t-set="prd_project_name" t-value=""/>
+                                <t t-set="prd_project_bank" t-value=""/>
+                                <t t-set="prd_project_funders" t-value=""/>
+
+
                                 <t t-foreach="o.order_line" t-as="line">
                                     <t t-set="prd" t-value="line.product_id"/>
                                     <t t-set="prd_project_name" t-value="prd.proyect_id.name"/>
+                                    <t t-set="prd_project_bank" t-value="prd.proyect_id.bank.name"/>
+                                    <t t-set="prd_project_funders" t-value="prd.proyect_id.funders_id.acc_number"/>
                                 </t>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="6" align="right">SUBTOTAL:</td>
-                                        <td><span t-esc="sum_subtotal" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
+                                        <td colspan="7" align="right" style="padding:6px;color: #03519c">SUBTOTAL:</td>
+                                        <td style="padding:6px"><span t-esc="sum_subtotal" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" align="right">SEPARACION:</td>
-                                        <td><span t-esc="sum_separation_mount" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
+                                        <td colspan="7" align="right" style="padding:6px;color: #03519c">SEPARACION:</td>
+                                        <td style="padding:6px"><span t-esc="sum_separation_mount" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" align="right">CUOTA INICIAL:</td>
-                                        <td><span t-esc="sum_initial_fee" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
+                                        <td colspan="7" align="right" style="padding:6px;color: #03519c">CUOTA INICIAL:</td>
+                                        <td style="padding:6px"><span t-esc="sum_initial_fee" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="6" align="right">DESCUENTO:</td>
+                                    <!-- tr>
+                                        <td colspan="7" align="right">DESCUENTO:</td>
                                         <td><span t-esc="sum_discount_mount" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6" align="right">IMPUESTO:</td>
+                                    </tr -->
+                                    <!-- tr>
+                                        <td colspan="7" align="right">IMPUESTO:</td>
                                         <td><span t-esc="sum_taxes" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
-                                    </tr>
+                                    </tr -->
                                     <tr>
-                                        <td colspan="6" align="right">TOTAL A FINANCIAR:</td>
-                                        <td><span t-esc="total_mount" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
+                                        <td colspan="7" align="right" style="padding:4px;color: #03519c">TOTAL A FINANCIAR:</td>
+                                        <td style="padding:4px;"><span t-esc="total_mount" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
                                     </tr>
                                 </tfoot>
                             </table>
                             <!-- TERMINOS Y CONDICIONES -->
                             <t t-foreach="docs" t-as="o">
-                            <div style="font-size: 10px !important;">
+                            <div style="font-size: 14px !important;">
                                 <ul>
                                     <li>
-                                    La presente proforma es solo informa va y No significa separación de los inmuebles mencionados en la misma a favor del cliente ni una oferta de términos.
+                                    La presente proforma es solo informativa y NO significa separación de los inmuebles mencionados en la misma a favor del cliente, ni una oferta de términos.
                                     </li>
                                     <li>
                                     Precios y Stock sujetos a variación según disponibilidad.
                                     </li>
                                     <li>
-                                    Si decide solicitar crédito con otra en dad bancaria, tendrá que asumir el costo de la carta fianza y las implicancias de estas.
+                                    Si decide solicitar crédito con otra entidad bancaria, tendrá que asumir el costo de la carta fianza y las implicancias de éstas.
                                     </li>
                                     <li>
                                     Los datos personales que entregue a <b><span t-field="o.company_id.name"/></b>, serán almacenados en el banco de datos denominado "prospectos" de tularidad <b><t t-esc="prd_project_name"/></b>.
                                     </li>
                                     <li>
-                                    El tratamiento que realizará <b><t t-esc="prd_project_name"/></b>, consiste en conservar, registrar, organizar, almacenar, consultar, extraer y u lizar mis datos personales para la realización de prospección comercial y envío de publicidad para ofrecer sus proyectos inmobiliarios.
+                                    El tratamiento que realizará <b><t t-esc="prd_project_name"/></b>, consiste en conservar, registrar, organizar, almacenar, consultar, extraer y utilizar mis datos personales para la realización de prospección comercial y envío de publicidad para ofrecer sus proyectos inmobiliarios.
                                     </li>
                                     <li>
-                                    El titular de los datos personales puede ejercer su derecho de acceso, rec ficación, cancelación y oposición en los términos dispuestos en la Ley N° 29733 - Ley de Protección de Datos Personales y Su Reglamento aprobado por D.S. N° 003-2013-JUS, debiendo comunicar a <b><span t-field="o.company_id.name"/></b> su
+                                    El titular de los datos personales puede ejercer su derecho de acceso, rectificación, cancelación y oposición en los términos dispuestos en la Ley N° 29733 - Ley de Protección de Datos Personales y su Reglamento aprobado por D.S. N° 003-2013-JUS, debiendo comunicar a <b><span t-field="o.company_id.name"/></b> su
 decisión por cualquier medio.
                                     </li>
                                     <li>
-                                    De acuerdo con lo indicado, declaro que otorgo mi consen miento para que <b><span t-field="o.company_id.name"/></b> u lice mis datos personales de acuerdo a lo indicado en el presente documento.
+                                    De acuerdo con lo indicado, declaro que otorgo mi consentimiento para que <b><span t-field="o.company_id.name"/></b> utilice mis datos personales de acuerdo a lo indicado en el presente documento.
                                     </li>
                                     <li>
                                     Por otro lado autorizo que mis datos personales de contacto sean transferidos a <b><span t-field="o.company_id.name"/></b> para recibir publicidad relacionada a los proyectos inmobiliarios que está ofrece.
                                     </li>
                                     <li>
-                                    (*) Sujeto a culminación de preventa y emisión de licencia de construcción fecha definitiva: 20 meses después de iniciada la construcción.
-                                    </li>
-                                    <li>
-                                    <b>EL DESCUENTO REFERIDO EN LA PRESENTE PROFORMA APLICA PARA LA MODALIDAD DE _______________________________________</b>
+                                    Depositar a la Cuenta Cte. <b><t t-esc="prd_project_bank"/></b> Dólares <b><t t-esc="prd_project_funders"/></b> a nombre de <b><span t-field="o.company_id.name"/></b>.
                                     </li>
                                 </ul>
                             </div>
                             </t>
                         </div>
                         <!-- FIRMAS -->
-                        <br/><br/><br/>
+                        <br/><br/>
                         <div class="row">
-                            <div style="width:150px"></div>
-                            <div class="col-xs-3" style="border-top: 1px solid black;width:300px;text-align:center">
-                                <span t-field="o.partner_id.name"/>
+                            <div style="width:100px;"></div>
+                            <div class="col-xs-3" style="width:300px;text-align:center"><br/><br/>
+                                <b> _____________________________________</b> 
+                                <span t-field="o.partner_id.name"/><br/>
+                                <span t-field="o.partner_id.l10n_latam_identification_type_id"/>
+                                <span t-field="o.partner_id.vat"/>
                             </div>
                             <div style="width:100px"></div>
-                            <div class="col-xs-3" style="border-top: 1px solid black;width:300px;text-align:center">
-                                <span t-field="o.user_id.partner_id.name"/>
+                            <div class="col-xs-3" style="border-top: 1px;width:300px">
+                            <!-- div class="col-xs-3" style="border-top: 1px solid black;width:300px;text-align:center" -->
+                                <img t-attf-src="data:image/*;base64,{{ o.user_id.partner_id.image_1920 }}" style="align:right;width:480px;height:180px;"/>
+                                <!-- span t-field="o.user_id.partner_id.name"/ -->
                             </div>
-                            <div style="width:150px"></div>
+                            <div style="width:100px"></div>
                         </div>
-                        <!--
-                        <div class="footer">
-                        </div>
-                        -->
-                        
+
+                        <!-- div class="footer">
+                        </div -->
                         <t t-foreach="o.order_line" t-as="line">
                             <p style="page-break-after:always">
                                 <t t-set="prd" t-value="line.product_id"/> 

@@ -41,7 +41,7 @@ class Project(models.Model):
            # }
 
     code = fields.Char(string="Código", required=True, size=15)
-    name = fields.Char(string="Nombre", required=True, size=50)
+    name = fields.Char(string="Nombre", required=True, size=50, uppercase=True)
     logo = fields.Binary(string='Imagen Fachada', attachment=True)
     logo2 = fields.Binary(string='Logo del Proyecto', attachment=True)
     currency_id = fields.Many2one('res.currency',
@@ -53,13 +53,13 @@ class Project(models.Model):
         default=fields.Date.context_today,
     )    
     bank = fields.Many2one('res.bank', string="Entidad Bancaria")
-    amount_of_letter_separation = fields.Monetary(string="Monto de separación de letra")
+    #amount_of_letter_separation = fields.Monetary(string="Monto de separación de letra")
     project_type_id = fields.Many2one('project.type.toratto',
         ondelete='set null', string="Tipo de Proyecto", index=True)
     owner_id = fields.Many2one('res.partner',
         ondelete='set null', string="Propietario", index=True)
     total_cost = fields.Monetary(string="Costo total")
-    amount_of_separacion = fields.Monetary(string="Monto de separación")
+   # amount_of_separacion = fields.Monetary(string="Monto de separación")
     type_of_bank_account = fields.Char(string="Tipo de cuenta bancaria", size=100)
     number_of_floors = fields.Integer(string="Número de pisos")
     number_of_unit = fields.Integer(string="Número de Unidades")
@@ -88,7 +88,7 @@ class Project(models.Model):
         ondelete='set null', string="Provincia", index=True)
     district_id = fields.Many2one('district.toratto',
         ondelete='set null', string="Distrito", index=True)
-    address = fields.Text(string="Dirección")
+    address = fields.Char(string="Dirección")
 
     # Advanced Data
     limit_discount_30_initial = fields.Char(string='Limite Descuanto 30 Inicial')

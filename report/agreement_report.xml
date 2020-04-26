@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<odoo>
+    <report
+            id="agreement_contract_document"
+            model="sale.order"
+            string="Imprimir Contrato Separacion"
+            name="toratto.report_agreement_document"
+            report_type="qweb-pdf"/>
+
+    <template id="report_agreement_document">
+        <xpath expr="//div[@class='header']" position="replace">
+            <div class="header">
+                <t t-foreach="docs" t-as="o">
+                   <div class="row">
+                       <div style="width:300px;text-align:left;">
+                           <img t-attf-src="data:image/*;base64,{{ o.company_id.logo }}" style="align:left; width:195px;height:55px;"/>
+                       </div>
+                       <div style="width:300px;text-align:center;"></div>
+                       <div style="width:300px;text-align:right;">
+                           <t t-set="index" t-value="0" />
+                           <t t-foreach="o.order_line" t-as="line">
+                              <t t-if="index == 0">
+                                 <t t-set="prd" t-value="line.product_id"/>
+                                 <img t-attf-src="data:image/*;base64,{{ prd.proyect_id.logo2 }}" style="align:left; width:100px;height:85px;"/>
+                              </t>
+                              <t t-set="index" t-value="index + 1" />
+                           </t>
+                       </div>
+                   </div>
+                </t>
+            </div>
+        </xpath>
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <!-- div class="page" style="margin-left: 94.48px;margin-right: 94.48px;margin-top: 10px;margin-bottom: 80px;COLOR: #000000;LINE-HEIGHT: 150%;font-size: 18px; font-family: arial" -->
+                    <div class="page" stayle=";LINE-HEIGHT: 150%;">
+                        <t t-set="prd_project_name" t-value=""/>
+                        <t t-set="prd_project_bank" t-value=""/>
+                        <t t-set="prd_project_funders" t-value=""/>
+                        <t t-set="prd_project_address" t-value=""/>
+                        <t t-set="prd_project_district" t-value=""/>
+                        <t t-set="prd_project_department" t-value=""/>
+                        <t t-set="prd_project_province" t-value=""/>
+                        <t t-set="prd_project_electronic_game" t-value=""/>
+                        <t t-set="sum_subtotal" t-value="0"/>
+
+                        <t t-foreach="o.order_line" t-as="line">
+                        <t t-set="prd" t-value="line.product_id"/>
+                        <t t-set="currency_type_symbol" t-value="line.currency_id"/>
+                        <t t-set="prd_project_name" t-value="prd.proyect_id.name"/>
+                        <t t-set="prd_project_address" t-value="prd.proyect_id.address"/>
+                        <t t-set="prd_project_district" t-value="prd.proyect_id.district_id.name"/>
+                        <t t-set="prd_project_department" t-value="prd.proyect_id.department_id.name"/>
+                        <t t-set="prd_project_province" t-value="prd.proyect_id.province_id.name"/>
+                        <t t-set="prd_project_bank" t-value="prd.proyect_id.bank.name"/>
+                        <t t-set="prd_project_funders" t-value="prd.proyect_id.funders_id.acc_number"/>
+                        <t t-set="prd_project_electronic_game" t-value="prd.proyect_id.electronic_game"/>
+                        <t t-set="sum_subtotal" t-value="sum_subtotal + line.price_unit - line.discount2"/>
+                        </t>
+                        <div style="margin-top: 2px;text-align:center;font-size: 20px;font-family: arial">
+                          <u><b><h4>CONTRATO DE SEPARACION</h4></b></u>
+                        </div>
+                        <br/><br/>
+                        <div>
+                        <p ALIGN="justify">Hemos recibido de la señor (a/es) <b style="text-transform: uppercase;"><span t-field="o.partner_id.name"/></b>, de nacionalidad <b><span t-field="o.partner_id.nacionality"/></b> identificada, con <b><span t-field="o.partner_id.l10n_latam_identification_type_id"/></b> <b>Nº <span t-field="o.partner_id.vat"/></b> estado civil <b><span t-field="o.partner_id.st_civil"/></b>, con domicilio en <b><span t-field="o.partner_id.street"/></b>, distrito <b><span t-field="o.partner_id.l10n_pe_district"/></b>, provincia de <b><span t-field="o.partner_id.city_id"/></b> y departamento de <b><span t-field="o.partner_id.state_id"/></b> , a quien (es) en adelante se le (s) denominará (n)  <b>EL (LA/LOS) FUTURO (A/S) COMPRADOR (A/ES)</b>, la suma de <b>$. 2,500.00 (Dos mil quinientos y 00/100 Dólares americanos)</b>  que ha (n) depositado en la cuenta corriente dólares Nº <b><t t-esc="prd_project_funders"/></b>  del BANCO  <b><t t-esc="prd_project_bank"/></b>  a nombre de  <b><span t-field="o.company_id.name"/></b>.</p>
+                        </div>
+                        <div ALIGN="justify">
+                           <u><b>PRIMERO: ANTECEDENTES</b></u>
+                        </div>
+                        <br/>
+                        <div>
+                           <p ALIGN="justify"><b>LA VENDEDORA</b>  es una empresa constructora quien proyecta construir el Edificio  <b><t t-esc="prd_project_name"/></b>, sobre el terreno de su propiedad ubicado en:</p>
+                        </div>
+                        <div ALIGN="justify">
+                           <ul>
+                              <li>
+                              <t t-esc="prd_project_address"/>  distrito de  <t t-esc="prd_project_district"/>, Provincia  <t t-esc="prd_project_province"/>  Departamento de  <t t-esc="prd_project_department"/>, que corre inscrito en la partida electrónica Nº <t t-esc="prd_project_electronic_game"/>  del Registro de Predios de la Oficina Registral de Lima. 
+                              </li>
+                           </ul>
+                        </div>
+                        <div>
+                           <p ALIGN="justify"><b>El (la/los) FUTURO (A/S) COMPRADOR (A/ES)</b>, hace (n) la separación porque tiene (n) interés en adquirir la (s) siguiente (s) unidad (es) que forma (n) parte del proyecto descrito en la presente cláusula y en adelante denominada (s) la (s) unidad (es) inmobiliaria (s).</p>
+                        </div>
+                           <table class="table table-bordered">
+                               <thead>
+                                   <tr>
+                                       <th scope="col" style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center">Unidad (es)</th>
+                                       <th scope="col" style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center">Piso</th>
+                                       <th scope="col" style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center">Tipo</th>
+                                       <th scope="col" style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center">Vista</th>
+                                       <th scope="col" style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center">Área techada aprox.</th>
+                                       <th scope="col" style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center">Área no techada aprox.</th>
+                                       <th scope="col" style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center">Área total aprox.</th>
+                                   </tr>
+                               </thead>
+                               <tbody class="table-striped">
+                                   <t t-foreach="o.order_line" t-as="line">
+                                       <t t-set="currency_type_symbol" t-value="line.currency_id"/>
+                                       <t t-set="prd" t-value="line.product_id"/>
+                                       <t t-set="total_area" t-value="prd.covered_area + prd.free_area"/>
+                                       <tr>
+                                           <!-- td style="padding:4px"><span t-field="line.name"/></td -->
+                                           <td style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center"><span t-field="prd.unit_number"/></td>
+                                           <td style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center"><span t-field="prd.floor_number"/></td>
+                                           <td style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center"><span t-field="prd.unit_type"/></td>
+                                           <td style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center"><span t-field="prd.building_view"/></td>
+                                           <td style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center"><span t-field="prd.covered_area"/></td>
+                                           <td style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center"><span t-field="prd.free_area"/></td>
+                                           <td style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center"><span t-esc="total_area"/></td>
+                                        </tr>
+                                    </t>
+                               </tbody>
+                           </table>
+                        <div>
+                            <p ALIGN="justify">Por el presente  <b>El (la/los) FUTURO (A/S) COMPRADOR (A/ES)</b>, se obliga (n) a celebrar, dentro del plazo máximo de siete (07) días calendarios, contados desde la fecha del depósito de separación por las unidad (es) inmobiliaria (s), el contrato de compra venta definitivo, para cuyo efecto, se suscribirá la minuta respectiva y se pagará el monto total del precio, en la forma pactada en la cláusula siguiente.</p>
+                        </div>
+                        <div ALIGN="justify">
+                            <p><u><b>SEGUNDO: PRECIO Y FORMA DE PAGO</b></u></p>
+                        </div>
+                        <div>
+                            <p ALIGN="justify">El precio de la (s) unidad (es) inmobiliaria (s) materia del contrato de compraventa a celebrarse en el futuro asciende a la suma total de  <b><span t-esc="sum_subtotal" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></b>, que <b>El (la/los) FUTURO (A/S) COMPRADOR (A/ES)</b>  cancelará (n) de la siguiente manera:</p> 
+                        </div>
+                        <!-- div>
+                            <t t-set="Fecha" t-value=""/>
+                            <t t-set="importe" t-value=""/>
+                            <t t-foreach="o.sale_order_option2_ids" t-as="line">
+                              <t t-set="prd" t-value="line.product_id"/>
+                              <t t-set="importe" t-value="prd.amount"/>
+                              <t t-set="Fecha" t-value="prd.payment_date"/>
+                            </t>
+                             <ul>
+                                <li>
+                                <b><t t-esc="importe" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></b>   US$2,500 (Dos mil quinientos y 00/100 dólares americanos) que se ha depositado en la cuenta corriente dólares Nº <t t-esc="prd_project_funders"/> del BANCO <t t-esc="prd_project_bank"/> PERÚ a nombre de <b><span t-field="o.company_id.name"/></b> el día <b><t t-esc="Fecha"/></b>  por concepto de separación y luego forma parte de la inicial sin otra constancia que la firma de las partes en este contrato.
+                                </li>
+                             </ul>
+                        </div -->
+                           <table class="table table-bordered">
+                               <thead>
+                                   <tr>
+                                       <th scope="col" style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center">Nombre</th>
+                                       <th scope="col" style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center">Monto Programado</th>
+                                       <th scope="col" style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center">Fecha de Pago</th>
+                                   </tr>
+                               </thead>
+                            <tbody class="table-striped">
+                            <t t-set="description" t-value=""/>
+                            <t t-set="importe" t-value=""/>
+                            <t t-set="Feche" t-value=""/>
+
+                            <t t-foreach="o.sale_order_option2_ids" t-as="line">
+                              <t t-set="prd" t-value="line.product_id"/>
+                              <t t-set="description" t-value="prd.description"/>
+                              <t t-set="importe" t-value="prd.amount"/>
+                              <t t-set="Fecha" t-value="prd.payment_date"/>
+                              <tr>
+                                  <td style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center"><span t-esc="description"/></td>
+                                  <td style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center"><span t-esc="importe" t-options="{'widget': 'monetary', 'display_currency': o.pricelist_id.currency_id}"/></td>
+                                  <td style="padding:4px;vertical-align:middle;COLOR: #000000;text-align:center"><span t-esc="Fecha" t-options="{'widget': 'date'}"/></td>
+                              </tr>
+                            </t>
+                            </tbody>
+                           </table>
+                        <div>
+                            <p ALIGN="justify">En caso que se opte por financiar la compra con alguna Institución Financiera que no sea el BANCO  <b><t t-esc="prd_project_bank"/></b>  PERÚ quien auspicia el Proyecto, correrá con todos los gastos y costos de la Carta Fianza que solicite la entidad respectiva, hasta la existencia jurídica de la (s) unidad (es) inmobiliaria (s), esto es hasta la independización respectiva y que la carta quede revocada en su obligación.</p>
+                        </div>
+                        <div>
+                            <p ALIGN="justify">Se deja constancia que la suma de  <b>US$ 2,500 (Dos mil quinientos y 00/100 dólares americanos)</b>  con depósito en la cuenta corriente dólares Nº <b><t t-esc="prd_project_funders"/></b>  del BANCO  <b><t t-esc="prd_project_bank"/></b>  PERÚ, en calidad de derecho de separación de la (s) unidad (es) inmobiliaria (s) descrita (s) será tomado en cuenta como parte del precio de venta de ser el caso y en el momento en el que se suscriba el contrato de compra venta definitivo.</p>
+                        </div>
+                        <div ALIGN="justify">
+                            <ul>
+                               <li>
+                               Queda establecido que en caso <b>El (la/los) FUTURO (A/S) COMPRADOR (A/ES)</b> no calificara (n) como sujeto (s) de crédito para el banco en el plazo establecido en el presente recibo, se devolverá el 100% de la suma entregada por concepto de separación, sin intereses, no teniendo derecho  <b>El (la/los) FUTURO (A/S) COMPRADOR (A/ES)</b>  a reclamar suma adicional a título de indemnización o cualquier otro concepto.  <b>El (la/los) FUTURO (A/S) COMPRADOR (A/ES)</b>  se obliga (n) a entregar toda la documentación necesaria al Banco para la evaluación y aprobación de su crédito inmediatamente después de la firma del presente documento.
+                               </li>
+                               <li>
+                               En caso que el desistimiento de la compra sea por decisión propia de <b>El (la/los) FUTURO (A/S) COMPRADOR (A/ES)</b>, se retendrá el 50% de lo recibido como penalidad por gastos administrativos y procederá a devolver el saldo resultante, en un plazo no mayor a 30 días hábiles.
+                               </li>
+                               <li>
+                               En caso que <b>El (la/los) FUTURO (A/S) COMPRADOR (A/ES)</b>, no entregara (n) a tiempo la documentación solicitada por el banco y cumplido el plazo indicado de vigencia del presente contrato, el presente quedará automáticamente sin efecto; y se retendrá el 50% de lo recibido como penalidad por gastos administrativos y procederá a devolver a el saldo resultante, en un plazo no mayor a 30 días hábiles.
+                               </li>   
+                            </ul>
+                        </div>
+                        <div>
+                            <p ALIGN="justify">El presente contrato de separación tendrá una vigencia de 7 (Siete) días contados a partir de la suscripción del presente documento, a su vencimiento <b><span t-field="o.company_id.name"/></b>, podrá resolver y/o dejar sin
+efecto unilateralmente la <b>oferta de venta</b> realizada en el presente documento quedando liberada (s) la (s) unidad (es) inmobiliaria (s) antes descritas para vender o separar a nombre de otra (s) persona (s) el/los inmueble (s), y <b>El (la/los) FUTURO (A/S) COMPRADOR (A/ES)</b>, renuncia a cualquier reclamo posterior por concepto de derecho de preferencia u otros en la venta de la unidad inmobiliaria  materia de separación.</p>
+                        </div>
+                        <div>
+                            <p ALIGN="justify">En señal de conformidad las partes suscriben este documento en la ciudad de Lima, el día  <b><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%A %d de %B del %Y')"/></b>.</p>
+                        </div>
+                        <br/><br/><br/><br/><br/>
+                        <div class="row">
+                            <div style="width:50px;"></div>
+                            <div class="col-xs-3" style="border-top: 1px solid black;width:350px;text-align:center">
+                                <b><span t-field="o.partner_id.name"/></b><br/>
+                                <b><span t-field="o.partner_id.l10n_latam_identification_type_id"/></b>
+                                <b><span t-field="o.partner_id.vat"/></b><br/>
+                                <p><b>El (la/los) FUTURO (A/S) COMPRADOR (A/ES)</b></p>
+                            </div>
+                            <div style="width:150px"></div>
+                            <div class="col-xs-3" style="border-top: 1px solid black;width:350px;text-align:center">
+                                <b><span t-field="o.company_id.name"/></b>
+                                <p><b>LA VENDEDORA</b></p>
+                            </div>
+                            <div style="width:100px"></div>
+                        </div>
+                        <br/><br/><br/><br/>
+                        <div class="row">
+                            <div style="width:50px;"></div>
+                            <div class="col-xs-3" style="border-top: 1px solid black;width:350px;text-align:center">
+                                <b><span t-field="o.partner_id.child_ids.name"/></b><br/>
+                                <b><span t-field="o.partner_id.child_ids.l10n_latam_identification_type_id"/></b>
+                                <b><span t-field="o.partner_id.child_ids.vat"/></b><br/>
+                                <p><b>El (la/los) FUTURO (A/S) COMPRADOR (A/ES)</b></p>
+                            </div>
+                            <div style="width:150px"></div>
+                            <div style="width:100px"></div>
+                        </div>
+
+                    </div>
+                    <!-- div class="footer">
+                    </div -->
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
+
+
+

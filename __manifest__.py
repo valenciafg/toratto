@@ -23,7 +23,11 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'views/res_currency_view.xml',
+        'views/company_view.xml',
         'views/res_partner_view.xml',
+        'views/res_user_view.xml',
+        'views/account_payment.xml',
         'views/project_view.xml',
         'views/unit_view.xml',
         'views/unit_type_view.xml',
@@ -33,7 +37,10 @@
         'views/res_partner_view.xml',
         'views/product_template_view.xml',
         'views/sale_order_views.xml',
+        'views/agreement.xml',
         'report/report.xml',
+        'report/agreement_report.xml',
+        'report/agreement.xml',
         'data/email_data.xml',
         'data/l10n_latam.identification.type.xml',
     ],

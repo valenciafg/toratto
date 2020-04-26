@@ -11,6 +11,9 @@ class ResPartner(models.Model):
     ]
     #required=True,
     code = fields.Char(string="Código", size=15)
+    unit_number = fields.Char(
+        string='Numero de Unidad',
+    )
     unit_type = fields.Many2one('unit.type.toratto',
         ondelete='set null', string="Tipo de Unidad", index=True)
     sub_division = fields.Char(string="Subdivisión", size=150)
@@ -30,6 +33,7 @@ class ResPartner(models.Model):
         ondelete='set null', string="Moneda", index=True)
     price = fields.Monetary(string="Precio de Venta")
     discount = fields.Monetary(string="Descuento Especial")
+    funders = fields.Many2one('res.partner.bank', string="N° Cuenta Bancaria Asociada")
     #amount_of_separation = fields.Monetary(string="Monto de Separacion")
     #initial_fee = fields.Float(string='Cuota Inicial (%)', default=10.0)
     m2_price = fields.Monetary(string="Precio M2")
@@ -45,8 +49,9 @@ class ResPartner(models.Model):
     )
     funder_type_id = fields.Many2one('funder.type.toratto',
         ondelete='set null', string="Tipo de Financiamiento", index=True)
-    parent_id = fields.Many2one('res.partner',
-        ondelete='set null', string="Cliente Interesado", index=True)
+    parent_id = fields.Many2one('res.partner', string="Cliente Interesado")
+    owner_id = fields.Many2one('res.partner', string="Asesor Bancario")
+
 
     #   CONTRUCTION
     occupied_area = fields.Float(

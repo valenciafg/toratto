@@ -12,6 +12,19 @@
                 </field>            
             </field>
         </record>
-
+        <record model="ir.ui.view" id="view_partner_form_inherited">
+            <field name="name">view.partner.form.inherited</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='website']" position="after">
+                    <field name="st_civil" placeholder="Estado Civil"/>
+                    <field name="birth_date" placeholder="Fecha de Nacimiento"/>
+                    <field name="nacionality" placeholder="Nacionalidad"/>
+                    <field name="gender" placeholder="Genero"/>
+                    <field name="firma"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>

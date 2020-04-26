@@ -10,7 +10,9 @@
                         <group>
                             <group string="Generales" name="group_unit_general">
                                 <field name="code" placeholder="Código"/>
+                                <field name="unit_number" placeholder="Numero de la Unidad"/>
                                 <field name="proyect_id" placeholder="Proyecto"/>
+                                <field name="funders" placeholder="Cuenta Bancaria del Proyecto"/>
                                 <field name="unit_type" placeholder="Tipo de Unidad"/>
                                 <field name="sub_division" placeholder="Subdivisión"/>
                                 <field name="floor_number" placeholder="Piso"/>
@@ -28,6 +30,7 @@
                                 <field name="contract_modality" placeholder="Modalidad de contrato"/>
                                 <field name="funder_type_id" placeholder="Tipo de Financiamiento"/>
                                 <field name="parent_id" placeholder="Cliente Interesado"/>
+                                <field name="owner_id" placeholder="Asesor"/>
                             </group>
                             <group string="Datos de construcción" name="group_unit_construction">
                                 <field name="occupied_area" placeholder="Area Ocupada m2"/>

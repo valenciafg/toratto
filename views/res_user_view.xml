@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_user_form_inherited">
+            <field name="name">view.user.form.inherited</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='action_id']" position="after">
+                    <field name="firma" placeholder="Tarjeta de Presentacion"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+</odoo>

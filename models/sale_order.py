@@ -45,3 +45,10 @@ class SaleOrder(models.Model):
             'target': 'new',
             'context': ctx,
         }
+
+    sale_order_option2_ids = fields.One2many(
+        'sale.order.option2', 'order_id', 'Optional2 Products Lines',
+        copy=True, readonly=True,
+        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
+
+
